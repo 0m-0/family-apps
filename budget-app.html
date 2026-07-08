@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="家庭記帳">
+<meta name="theme-color" content="#E8913A">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAgvElEQVR42u19eYykx3Xfe1X1Xd3TM9Nz7Sz3Imfvg5R4iRIl0tRapEjogpX4VpzDRiDlsIPEjmEpkKHECBIjSCA5BmLBhyRAjuJYAmxGpCRKJkVSJL0Ur6WWe9+7szszO1dPH99RVS9/fF/39Oz0Pb2zo516EARitnum6tWvXr3jV6/w6hcfBCMdCBEyzlJDgLfsFJlZ5Y7RgVYa2K2sQAOOTs0Gt9H2gLQBh5FlZsNOAd7i2jPg6ExtFgrn1jYbBhydWQ3N7BQgv/W3gFnrtoVbaHm3vNkw4OjMFXUAcT3M1YCjbUFhrxfPyix2O6JB2CgcIDLgMHLdmQIoHABcJ9M14GjrROHIHQBtwGFkmd1gHBkHAgMOI8viFGbd8llRA46O4xQL1o/dMOBoR1UMuFhfMzaL3uKhgigQxToJYg042lUVXz9BrAFHu96oWCdZcwOOtp3RdRWnGHC0hQ1Ebq0rh8OAw4gBRzcsx3rzRg042vFGmVhXGTADDiMGHEYMOIwYcBgx4DBiwGHEgMOIAcetKqTXwy0mA472BZG0AlKmZG/EiAFH2ycLGXAYqe1zkAoN2cdIXYAYy2Gkjk8qw/UWsBhwmGjWgGPFpoNIEcl15XYYcLQRrZCM1lWqw4CjHXioyFyHNFLbJwUt15XbYcDRBjpAq3WV7TDgaNPvkKHp7GOk9slC0gctDTiM1DxZNMnAtJo0UudokaGxHEbqnCzKB7UuEh4GHB2YDtBhYT14pQYcHRmPKFgPxsOAozPRFPm3vFtqwNGZ8WA6KsCtnvMw4OjY8yAdFW5t47GavRPx+ufyiNZKqQL59SZAq6bGg6RPKryxHX9wWbsp0qvGZhWrhwwttV9YuiIWWqm1UOekYJ60rl4SZve0YhW0n+OpgRvs+QYACEDJ/1seslXqlStWDRksNeDd9XOLNgNRzY+H518BdtPbApO376Po9gIRAAICySA49SxFfrMmcQgq1GGBOZnum0BEkKE1ulcMjsXqiuERjR9W85dXR2mrAg5EUiHr3dh78HerfxycfTk48zxy+yaz/ol6HvpNntlQZRDk1IVDFBaB8SZjQ0ZBgYTT/cMFGUUlZ+wh78Anqn+c/+H/kNNn0FkNpa2aQ4pAGrQCLUErUCFoRWF+bXj7SH4OtAIVgZKglS7NtaF6JO3nbsg2RkYyAK1AhsnwtKJVzK+snkOKiMB4cnZS7AOumViJcWAcCAEQknG2g3sV6SDHkoOp255yPJh4eMhWMz5axeVZs1EfdmFqFBZvRFrs5ups1cBBazhfhF1YBETtz4EKu20O8ZYHB9aI1ytBfGIq8abBAmt1vO9gYAQ69l26YYvqK231NHZjfA4sz40ISIGWJANS19MgSEUULAAyjFeIsUQXBAAERDcgWos1jkn+jRQpVf5bS+IXCvIUFsFyMVkMlgSTDQaGSErq0izzssBY2/5Hst6Y3J5SmqJgOeuMohKFBeAWYgwUnkwHoMZE1hY44tVVIcmAtEJho5VCNyN6hsTg9uusJe8ddbb/DEUlXZylYEFHJZJ+nIICJpBbED9UEC/GCqcd70IlKfJJS0SGVgrtNHcy6GbQcpd8VtjOHe+XcxcoWNClHEVFCgukFSIDxpHbwAQwBgQAS/OViKRCVZrlqSxgi/hAQAakSQagIiBCy0XLRaeXpQdYerDqcEEAsDbs1flpUqH25ykqUlQCFcWzQ2YBF4AsSZeteHfh1S8+2D1YEAUFAOK9t1mj+63b7hKDY6JvM6ayKBzkdu2jXUuKfB0sqNy4yl1Vc5fkzFk1d1HlxrWfIxkiEyhsYGIlsKCoBDJAL2uN7LI33iU27BX9W1jPMFoecrtOeEIU+RQWVX5CzY+r+XE5c07NXZBzl6k4raWPgCBs5Pby7wG3eCoLwJosD3LQEUUlFA7v32KN7BEje3j/Jt4zjHZPg1mTCkEGujSrchMqP6nmL6u5Syp3RReuUVQErYFbyFf6Il2XwME4BXlg3Nn2Pm//x+xt72FuX0unNNXxyLVShSl57XQ0cTS6+hM5dVKXZjs5ZZGDCikqiZHd3r6PuDse4dltrTkQup5mdWlWzV6MJo9HVw5Hk8dV7kqN9CgRcsFSA3XxgQgEFOZZasAZe9jZ/rAY2Y3caiVlV899pqik81Ny+nQ0eUJOnVRzF1dId105OBAQtJ9zttzX8+Cn7a3vWVTu4jQQsIHjTUv9jBrVJl2cmfm/n5YzZ1G4bSSqkVOwwDIjPQ/8unfg4yjcMiJ1GZRYHhQ2gm/9gZEKF57774U3vsHc3utrdRV8IL9+zMhIhUDk7X3Ce9c/4JnRRaUlYV0LA6tWWsXJq5Lg/MsLz/znlSTaxUqRQUTSz7z/Mz3v/eflZLMue3DtRGsIVRqpXhUNyFhqoO1Hwhmn0rwz9oHeRz/He2+LrVHiVy6vwTaE/tKBwaIPRBq5zbz+2niN/dPiDLp9yO3FzyAj6TNvIPMzv2Vvua+MCagdm3SiNA1EwARLDd5EhxQBiFTQ99jnvQOfSPx/ZAAcuiCVVUEABCXbQwZy8ue9/R/re/wLwDhoBYy1mfdsGovFL1NTo2ssiKQkFaeZ24+WF+uHpM8zo32Pf4H3by7jtVsJhVhpPHkzW0c3L8+BSGE+88i/9Q58ArQEhIaTrBluUJmdQC2sRzvICBbsOz7Q98QXgDEg3eTtvpqwi+PJ5ohslm9ABEBdmtX+PCCCVsxO93348wkyGG80tZqaoZaVtuJESMchAKcg5+z8UPqeX0kmWW8oic2secosPSYX3ZSVpCwRVMh6hvoe+3xy2NeDbKzlestT/a3EKAJAp6UNZBQWtVaA2PvQ53h2W1lp9d3hekpYkv6qxKt4I9JinVoOUminMx/4F8uGW8vnR0ZRSRemlrn989HkMTU/TmEhWQ/Gy+kmDVp1kttgTEfF9L2f4pkNidGuO7CkEKjyk9cn6LSUUyflzDldmgOg5JNYhpFWZc+xvYBO+3NiaLu76yBoXR8ZVN5LqEtzFOSv+2eVuyJnzuriNOgoyZEkJcxy9qx7mcOOLAfj5OfcPR8Wg9tB6+vJf0uCLhZefrN0+JvhxR/z7NaBn/+TCrYAeXjh0NyTv8PSw2h7LDUostvE0HZrwz4xNMa8bIK39iaMoEKeGfX2fxyAGiKD6cK1whvfCM+9rBYmBn7hy2JwrLJftZ+b/da/0kGeef3M7eV9m8XgHWJkjzWym/dtWlzXBuCro5DUXf8Qyt5KHWQgAPnHvx+c/mE08U763k95d30yMTOkAVnx1a/6J59jmWFmeSw9zPu3iME7xPBO3r9lMRImtVJcIK7IIXV3HASof/KRBmSFV7+28MKX4va/rGekZpmAoqL259X85ejS60SEwmY9w9bIHuf2B51tD/Ds1rJVolbMBvklZ8dBlsrWPVBIA7Lo8ptz3/49OXcJLRcX089VqmEWqEgXp9XCRDRxlLRCLpjbJwbH7C332bc/aG88AMJudWCAoCOWGbW3vTceZ72wWYf5hb/7w/Dcj0B4EBZoubfLBABRsCCLszB7ES4cAkS0PN67UWzYa2+5z77tLnQyK4QFyYDCYgfgQFAS3T5rdH/dc5E0IAvOvph77r8xJ4PcoiAPyOu5LygQAMGOx6WpOBOcetY/+QPm9du3vdvd82Fn7KEyF6T57rQ33122W7UWAFGX5uee/rxauMrSQwn5qOZSIQNuIbMgJqMQkQzDy28FF36Mh75iDe9MaFqtvP2GSGFgb9nJvL66WSwiQFY49OfB6edZzzAgkgxqndfxuSNQsKoClpZzl+T0Gf/o0zyzwdp8t7v7sYT12DYsQgrz8X1g0QE2SEme2cB6hhvHEaUjT8ZVkrL3QA0DGVr8d24htxERlAzOvBCc/iEfvIPCwpJsQb2DjFkizoHWHJfWwHh4/mU5e455WUhcjYYDI1r8CDK0U4gIpKPJ4+H4W8XD30Qrxaw0aN0EHKR4dmt55/CayNClufDcKyyVBS2bbYbrlYbCBuEAgC7O+ke+HZx8lmdGgYuWAi5EIJ3AQoWVtHVHlkMrHmel6i4CAoAuzsUlpfa9Xapk1tHpAUA1P46sBeYYabQ85vU3DuRUYbrTolQMFwAAtDy0UxTktZ9rhQ6OADw93Pgz2s/p4gwKJ3HM29r3lRkxgV4faCXnLzfMx8dWn0BJUoGOSqBkORe3olCWIEFGPcNFAMhSA0lQsJKCKulkW7SyA0iDEOWx1RWeHupC3inJwXNsSkKuWA/La+IyORnSUhdyKFy0POrQr6T4oKyttCS0JFISVEAyIBUly7TsEGArWbPGmX9358GEDduFlaAWjRoQNbLwjAGAveVe3jNCkQ/MWnFuoA0uQaPFRgTSLJW1t96vS3NEWgcLqjAdcxiu/2SF+dFo8DH7pMwYwoQpQjLQwYIuzuridFz0Lid1sCt5DgJkFOQbnRfIgcjd9aH0Pb+aFJEbBJZdEwJgIEOKCo2tC0sP9R789wmxT6vVIWoSEPm5ptDOPPRb1ob9Oj8FStaM4SkqUVQCkqAjILUUKFX/0xJ0BFpSWKRgQfsLujitijMxdYZkUMmmdDnPgYzr4jSFeXR6654siADQ++hnrU3vKr39rfDK2xSVaiciY141dYP6hYxkSeen6kcrEHNw3N2PDvZuLPz4a+H4Wzo/VQPoceKLcdC6W5w0lbvayIVHBCDeOzr4S3+aP/TV4OwL+sqR5V2ESPo6WCBkcU0H6yTTSMly5bY8+MXUc6ubQXRi4Zmli7Ny9oI1eqABvSAWb99HvH0fkTPnKFio8buCPGgZs2MS0k2cHu3MTUEAomjyuLPjg01iNtLWxgP9H/tDXZyRM+d478byz5NPUOTr0hxyC5AjtxOGVceXe4mQW3L6TKN0fmLYCN2+zMO/2fP+T8vJ44lzXf0VrcnPJUuecNL4ksCqanM2yV83E/7bT2zpLEMqsrfbm97dbLZJGpF5/UuulMUEyPSQs/U+a2Q3z4wg4zoqkr8AUQkAOmUxYZzb9vZ/HFhDpcQQBEI7xXs3YpLOSpwyFJZ127vsjXfxvk1op0EGOligoACkkYuOqruETOjSrLvzIEv1N9pRif+ukVk8syHhTOFigV4M7bC33CsGtrFUFrWksKCDBVARMg7cKn+yOwdlR2QfRIp8a3jX4K9+rVUmdKX8Vh9DamEimjwaXjgUXnxNzpwFJdFOAxfNL7xfn6OLBn75z63RfXHyoKUIsOHHdGlOTp0IL70eXvxxNHGUggUQLlpuexaOcSrN9Tz4mZ73f6ZJ1W2Jq9uoBklRSc6ej668HV54Nbz8ps5PAAq0U1URw4qkI8sBgMJRcxd5dqs1sge0br4GWHOStHiiM87cjBgcc8Ye8vZ/3N5yLyBXcxd0aR4tp42twBhFRfIX3N2PNbdqdQdWVbKPk9N9m+wt93kHPu6OPcRSA2phQi1MIPI2eFYEyLicOePtfQKddNPjeJEoX29gAMhtnh6yRve7ux/19j4hBrdrP6fmL4KO2uZGdREc8VTD8cPurg8lDLnOToEK8b/CYgJCbov+ze7OD7pjD4MOo6vvxGa5xfQ5CldOHeN9m60Ne0DLDqOkyp0aqNDfNSBj6UF76/2p/R9jXjaaPEalORRuq/jgFhVn1cKku/vRKiex04EhVghpAIB22tqwJ3XgE9bIPjV/Uc6cQ+GuMFDvFBwAwCzy56PLb7g7HkE7DVqulIexuB5J5MLSg+6OR6wNe8ILPyY/11oqLD6+RHD2RWvDXpHdlgSEKzmGsep+EWkgjZZrb3qXu+ugmj0np06i7bU0MCIUnrx6hHTobHtfzP1ZWYRflcYoEzTFwDZv30cReXjhEHK+Ej7XCsABhJaj5i8HZ39kje7jmdFktl1wiCpXjzSQFgN3uGMPhWdeSMKH1sqzQMo//gzz+q3R/RX3syHPuZ2NCwRaM6/f2/O4yl2OrryNVmv4AELLDc+/ohYm7M33JDnT+JIcdmVgAKSQCXvr/Twz6p96Fpm4KeCA+AaOzl/zj36HoqI1OIZOT2Lu4jTlChcjnrCWLDVgbb7XP/ZUG1uNcQAKTv4gmjwu+rfyzEjiOFfc2xUtRnITCRh3tj8SXXpdzZ5H4bR2vhAKNxp/yz/9PHN7raHtVQG87sLWSrCrrNF9wEVw+vlWDVuXwVGO4AF0cO7l4MT3dXGGpwZYerAqZUuLjPtOOXagJe8ZQWb7p59tZ6oMhSOnTvhHn5bXTqCV4pkNGMd7FQQTdb4eiEAKGbc2Hii98/9acswX7Yeni9PB8WeC868AKZ4eQqdnMWW5CJTOdhcCImhtb74nuvRaO8DtLjjKeWu0PQoKwYW/948+HZ7/e124htxiTg9yu8qBqvldbG0ZyBrZ5Z98ThdnkLduKil2GOXEUf/4d4NTz8q5i0CaWSm0040GRq25KchAK5Ye1Pmp6NJrbQCXCLmFwla5y8HJ50rHvxdNvENhAYXL3L6Gt6WpnO9rhg8iQMYyw/7Rp1s9jruQ52hyCiiKSqAlWB7PjFrDO8TwbjE4Zg3v5tkttZchoZpik2Qa4/mX/iT/4h9jqr/N5AcAcgAi6ZMMkAmWHhIDt1sje8TgmBjeKYZ31a5ux+/XN7YHpAExunp05hv/tJM7m3FApEKSPgExt0/0bxHDu8TQDmtouxjZw7z+GlsojmZZ07I+gdbTf/lr0eTx5G7ETQNH9YQRQWtSIaiQiECF9tb3DP7KV5eWCQJQETo9VVpmTdbgyk9mvvEbwDu9xRXDlwhURCokFSEy4NbQr/2VGBpbHABpHeSZ29vGZtVy+uv/KJo6iZbb0QFfhqCWidIYp6DQ9+jn0vf/4+qkWZKCW6SL6sapRWB84YUvFV75U/Ta3lE3pgVDzHUo05OQcQoKS8n+CpAH515e+MF/EcM77dve7e5+lGe3NjTmCIBi4A6WGdb5KeisQVvcEgIgvsWPcTFFy0WoEQGi9udn//pfAuPWxgPujoP21vubz5cJMbI7vHoE7VRH/N7ywJCh5YGdQsb19fcrNSBbeOFLwblXrNvucm9/0Nn1obIz0Qi49sY7C8g62E03uCdYnD7SdbK5Wsr5y6pwzT/1w/yrX8k89K9T7/4FAF07NI+rHk4Pz4yq3BXk9soqpYucrpq/RxdnVO5KeOXt4hv/x93zeN+j/yEJO+s6KMCz27pR0qgaWC30U1iQ106p+XH/yJPi0Ff6nviP1oa9de0HIgDwvk2dQfbmtmxDFDba6Zg1Of/MHwRnXwKozywkDQAsNdil7jmNPXWBdop5fehkSoe/ufDiHyUBToNvpIdb7smxEp1xtDx0etHLyqkTc9/+rPZz5S62Nc0toNePdroDpXUMDuwOeSf2RrUEbiOy4uFvNv/Dtle+f9bQxevOwBRoxVKD/rHv6sK1umsfl0KddEuZ1i6YFh33S8JUVl47HZx5Mfbw6v5Z4SQsV1wNy4Exxaibl4BJAbfU/CVKqiHU6K83/k1hofn92LYWgzEd5OXcpXpnUGW7NFYaRT7JsMn92HZ9OwQ5fbqFndzJr29/aRFJRywzYm+5l4J80mi2WxPWqqlHTdIHqOdeESB3bn8fclsXZ4EUsG51OyVQTS6t16a6VSnNvu1Okd2qCzMkw262YY0H1kD9KqT4TGnzxOvsUlPE08MDP/+//FPPFd/8q/DS6xT4zEoBtwE7buuPcbWikfuNCAC6MAOM1T1iSWY++NtAVHj1q8GZ51V+GoWNllvmcXVE+CNAZvHMSKMsIIIqTJXZ9jVOOgqLzs6DqQM/V3jzG/47T0XTZxARLQ+Y6HxgiECUsKhq64wAUJfmKSzUvbXa5WgFkZQERHfnQXfnwfDyG6V3vh2ee0nNjwMRxO2/4qFU7oA3TvQiB0QKC+7uR8vWktecJ0VFtXCl8SUzCkvW6L6+x7+gcuP+0e+UTnxfTp0kFSC3UdiAIiGpAzRcknLBk3Gdn3J3PML7t9RlDyEAgJy50GCqiEiRj05PzwO/kb77l/1Tz/pHvxuOv6lLc8g4cifhccUtaxorrVyJpchnXp8z9nD9CgABgMqNU1BAp6fdJNgKurCVE1P2prvtTXfr0mx44dXg7I/C8bdU7ioFRYyPm7gvYO01ICBJMgAZkFapu3/Ru/OTQFT74iQRIMhrZ3Ruokkv/bgkRpr33pZ+4J+l3/NPwvE3gzMvhhdelbPnyZ9P1pgJZKL+ZWsFKiIVURRYI7szB3+nUSSCHLSSE+80HxgQyAjttLfvo96+j8rpM8G5l8Lzr0STJ3RhmlSEDJOBcazrKSsZc9CZner92d/j2S31LwbHDy28RaQQV+NYuW625QjTy7q7H3N3P0ZRSV47FU0ek5Mn5NwFXZjWpXmSQa0LNhydDO/bJLLb3N0fdnf9bJPwAZl/5gUdFZmVbeKaIFuMOBi3N91jb7oHSMu5i3LiaDR1XE6f1flJVZihsAA6Wo5dtDyWGeXZrc7WB7y7Ppn0Na/HGQOMJo7Ja6cT7mDj0zPhA2sAJgbHxOBY+t5P6eJ0NHk8mjgmr53SuXFVnNFx84XlSuMWS2X54Ji1YW/qzk+K4Z312ZAEjIGW/tmXmt8kvVFJsOqVQETLszbeaW28s+ym+QkJtnoBkAOAc8eDw7/+t2inscn9uQQZFBb8Y08zu+UaQdKduMzMZlxkt4nsNnfP43EKTgd5Cgs6yPO+zWVziADA3L6BX/wz5FZVar9+6pYIGCu+/S2SPlpOa7kmTKxjwkRkLDXo3P6gc/uD5Rx5XodF8ueYl13UMDIAyDzy7zIP/xvm9lUZ7zrGT2tgPDj3spw8hnb6JoFjyUrA4mJgnAx20XLLzVaXxd8xLBImDm8U6DJReO3rauZc+zUCXLz/SVU1eiaY1w9eP18eJCNjqWwV4usXBbUCxqOJo/7Rp9Dpab8cWG54FPO4KPEn0OnhTg9UXOCqv84q7RXi61h1Qx4CRFJR/uUvdxxI3oj0OVZfxl3sCwi12OdlDDWMbyUwEV5+o3DoL9DJNLnP3uJiLA4MarPPk4FhI8hqDYxTWMx97z+Rijooey714XgtpS3Pm5WbtzbqGkXxdsr/6H9G42+h299ZOxfROQJiskzzF0AaNiFt/N3EaRDRxLG5J383/u+WFkCrFi5gNuz1ic1L4cA4SX/uqc9GE++g09t8ARK6lwJomsNtoLRmGa3kVrQovPb1wqG/QLev40Y/okNkaAnAkhRa2dvoZs+yykGD3D/1bO6ZP9D+AgqnOTLK7sUS29uVRzOW4JUD42ru0vx3vxBePIRuX0sHipKADOJ22Ak7jnVzYBC3rWKkovyP/rhw6Ktop1dS6+mACUbIhPbnw4uvkgyY28/c3up73OX1a5d+R+Vzl8qtZJmav7zw/BfzL/wRaIWiFX8bASi8/JouzqCd5j1D5V+1lBTY9sDKFY0yDZ0iv3T4r+e/8/ty+jQu711ca+WQW/LaaTl9BrnF04MonCpSYFVrvLZ4gZU7E7D41EZw7pX57/y+f/QpTPgonYOjc7IPRaWYIWeNHrC3vcfefK8Y3F6+V7h8AvERzmv80/JtrVV49Yh/9Cn/+Pd0YRrdTO2grq7zGpIMmJ0WQzudbQ9YW+6zRnYlbn+Nv05AUINStcj1XfJzNXfRP/Vc6cjfyskTaHkg7DacUFI6LCETvH+zvfleZ+v91sY7ef/mOvukHCItf1e24thV66w0F144VPrJk8GFV0BrdNJte8ddBEcCfBVR5BMpZqd570YxvMsa3i2Gd/K+TTw9iItkqmZ6C/JqYUJOnw7HD0eX34imTpH0mZ0CbrUfApTZijKIHwXm6RE+eIe1Ya81tIMP3sHTQyw10GJpg2SgC1Ny7lJ05Uh46bVo4oguzqJwEvezPaON8Tsscd4PENHrF/1brQ17xNBOMbyD94yw9GC5R3vzkzcmnUQTR8PLb0ZXDqu5SwCITjox4SuPLLrRGD/mOitSEaiQSCMTaKVYKsu8fpYa4OkhsFxreFfVK5gagEWTx4uvf53CkspP6tKsLkxTWCDSyG0ULjAGemVdNSu3fSqkQMZRuOj1MS/LvCzvGWJuLzq96bt/Cb2+SqKFolL+5S+r3Hg8Kl2Y0f48aYmMo/CAi5U+C52wFQF0RCoiFSIgcIu5vczrZ16WpQdZahC5cHc/Zm28s5xlIQAsHfmb4OxLFJZUYUoXZ3VxBmQAAGi5Vd5Md2TloWxVmyxhg3ARE69N5SdVbjyOPHWw4Nz+Xu/AJ8qvQxIgyOmzhdf/N3N64xMHuYVOBivPKK3YKlbYisArpEACIirNy8J07B4RKQDm7nlMxH3+4spRVCod/pYuToNwABkygXa68vVuDKxCCuRoCbRT8VVQikoyWICZ80AKkOniNEsPWhvvTIpNRIAYnH6+9PbfoJeNnT8UNlhuuR9+lx8+7mqegwhALfa341aCZcYZF8ubY6KwmdePVipx3YkWl7O7cl23wqTck5TDalTPEdHtQxWVjQTcqIEtYSvGXTfLNBQuEAiWHTFop9HrQzuduLEVnN0AuZEc0krNU9chasS7kLoP+dYio0qyq1ZfL1JACoit7mvZVQnDWGM1nvnRq6Y0tqozX4uyZh80hbZitJ9ycNCaXYC1Orgb8j6msRy3yMBusqwaOHBNrwGRGZg5VozlWCPRyvWik2IpIJBKqMhrBBuLoQEutqBZE2NTi4Ee6dqB1U8/OIiQV1EQOACg3bM2di2h1wuMV54uZF7/6rQ1bq4z4SW9citKE/aqKU2sFjBsPT+e+7v/WpVdQDU/3oSRu0ruEOaf/xLGLFFAwPgpmsJq3G1spDSNtuef+J6cPZekz4kAMbzyk/Ye112JYm5IC4aaDilJHSzpSo7cQiu1FowHBXmqVjcis3tuvvHA+JJcsORn8fvqq6K01TtWAEVCzKx2xdeG24Fu3/VIWAtuB1H8qst1FmXV7NlqOqS0hhy95X7f2gxZblRNZ62FskZ+2sSAw4gBhxEDDiMGHEYMOIwYcBgx4DBiwGHEgMOIAYcRAw4jRgw4jBhwGDHgMGLAYcSAw4gBhxEDDiMGHEYMOIwYcBgxYsBhxIDDiAGHEQMOIwYcRgw4jBhwGDHgMGLAYcSAw4gRAw4jBhxGDDiMGHAYMeAwYsBhxIDDiAGHEQMOIwYcRgw4jBgx4DBiwGHEgMOIAYcRAw4jBhxGDDiMGHAYMeAwYsBhxMii/H8zkKWtcUPxBAAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>家庭記帳</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800&display=swap');
+:root{
+  --ft:'Noto Sans TC','Helvetica Neue',sans-serif;
+  --bg:#FAF8F5; --sf:#FFFFFF; --t1:#1A1A1A; --t2:#6B6B6B;
+  --ac:#E8913A; --al:#FFF3E6; --dg:#E06B6B; --rd:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{height:100%}
+body{min-height:100%;background:var(--bg);color:var(--t1);font-family:var(--ft);-webkit-font-smoothing:antialiased;font-size:15px}
+button{font-family:inherit;cursor:pointer}
+input{font-family:inherit;color:var(--t1)}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:#d8d3cc;border-radius:3px}
+#app{background:var(--bg);min-height:100vh;max-width:430px;margin:0 auto;color:var(--t1);position:relative}
+.card{background:var(--sf);border-radius:var(--rd);padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 12px rgba(0,0,0,.03)}
+.tnum{font-variant-numeric:tabular-nums}
+.toast{position:fixed;top:28px;left:50%;transform:translateX(-50%);background:#1A1A1A;color:#fff;padding:10px 24px;border-radius:20px;font-size:14px;font-weight:600;z-index:100;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.fade{animation:fadein .15s ease}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid #E8E4DE;display:flex;z-index:50;padding-bottom:env(safe-area-inset-bottom,8px)}
+.navb{flex:1;background:none;border:none;padding:10px 0 6px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:opacity .15s}
+</style>
+</head>
+<body>
+
+<script>
+window.onerror = function(msg, url, line){
+  var a = document.getElementById('app');
+  if(a){ a.innerHTML = '<div style="padding:40px 20px;text-align:center;color:#E06B6B"><h2 style="margin-bottom:10px">⚠️ 系統發生錯誤</h2><p style="background:#fff;padding:15px;border-radius:12px;font-size:13px;text-align:left;word-break:break-all;border:1px solid #E06B6B">'+msg+'<br>Line: '+line+'</p><p style="margin-top:20px;font-size:13px;color:#6B6B6B">若持續發生，請截圖回報。</p></div>'; }
+};
+</script>
+
+<div id="app"><div style="padding:60px 20px;text-align:center;color:#6B6B6B"><div style="font-size:40px;margin-bottom:16px">🏡</div><div style="color:#E8913A;font-weight:700">載入中…</div></div></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+var FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBVDVbF-oSS6wQZX4tht7mUrEi8PlVHQq8",
+  authDomain: "order-list-money.firebaseapp.com",
+  projectId: "order-list-money",
+  storageBucket: "order-list-money.firebasestorage.app",
+  messagingSenderId: "169857003814",
+  appId: "1:169857003814:web:ef985f9c5e5e1e028c51e7"
+};
+</script>
+
+<script>
+/* ═══════════ 分類樹 ═══════════ */
+var SY = { system:true };
+var PM = { system:true, permanent:true };
+function m(){ var o={}; for(var i=0;i<arguments.length;i++){ var s=arguments[i]; for(var k in s) o[k]=s[k]; } return o; }
+
+var INIT_TREE = [
+  m({id:"food",label:"食",icon:"🍜",color:"#E8913A"},PM,{children:[
+    {id:"eating_out",label:"三餐（外食）",system:true,children:[
+      {id:"fengsheng",label:"豐盛號",isStore:true,system:true,children:[
+        {id:"fs_meal",label:"餐點",system:true,children:[
+          m({id:"fs_tomato",label:"番茄起士蛋吐司",addVeg:true},SY),
+          m({id:"fs_maling",label:"媽鈴吉起士蛋",addVeg:true},SY),
+          m({id:"fs_hash",label:"薯餅起士蛋",addVeg:true},SY),
+          m({id:"fs_curry",label:"咖椰吐司"},SY)
+        ]},
+        {id:"fs_drink",label:"飲料",system:true,children:[
+          m({id:"fs_redbull",label:"紅牛大杯"},SY),
+          m({id:"fs_coffee",label:"美式咖啡"},SY),
+          m({id:"fs_blackbean",label:"黑豆茶"},SY),
+          m({id:"fs_sugarcane",label:"蔗香紅茶"},SY)
+        ]},
+        {id:"fs_extra",label:"加購",system:true,children:[
+          m({id:"fs_bag",label:"袋子"},SY)
+        ]}
+      ]},
+      {id:"lvwen",label:"綠紋",isStore:true,system:true,children:[
+        m({id:"lw_vegbox",label:"青菜便當"},SY),
+        m({id:"lw_blanched",label:"燙青菜"},SY),
+        m({id:"lw_drynoodle",label:"乾麵"},SY),
+        m({id:"lw_sesame",label:"麻醬麵"},SY),
+        m({id:"lw_dumpling",label:"水餃"},SY)
+      ]},
+      m({id:"tsai_teacher",label:"蔡老師素食便當",isStore:true},SY)
+    ]},
+    m({id:"groceries",label:"買菜/食材"},SY),
+    m({id:"snacks",label:"零食飲料"},SY)
+  ]}),
+  m({id:"clothing",label:"衣",icon:"👔",color:"#C77DBA"},PM,{children:[
+    {id:"cl_clothes",label:"衣服",system:true,children:[
+      m({id:"cl_clothes_shopee",label:"蝦皮",isStore:true},SY),
+      m({id:"cl_clothes_uniqlo",label:"UNIQLO",isStore:true},SY),
+      m({id:"cl_clothes_nike",label:"NIKE",isStore:true},SY)
+    ]},
+    {id:"cl_pants",label:"褲子",system:true,children:[
+      m({id:"cl_pants_shopee",label:"蝦皮",isStore:true},SY),
+      m({id:"cl_pants_uniqlo",label:"UNIQLO",isStore:true},SY),
+      m({id:"cl_pants_nike",label:"NIKE",isStore:true},SY)
+    ]},
+    {id:"cl_skirt",label:"裙子",system:true,children:[
+      m({id:"cl_skirt_shopee",label:"蝦皮",isStore:true},SY),
+      m({id:"cl_skirt_uniqlo",label:"UNIQLO",isStore:true},SY),
+      m({id:"cl_skirt_nike",label:"NIKE",isStore:true},SY)
+    ]},
+    m({id:"cl_hair",label:"美髮"},SY),
+    m({id:"cl_shoes",label:"鞋子"},SY),
+    m({id:"cl_bags",label:"包包"},SY),
+    m({id:"cl_jewelry",label:"飾品"},SY),
+    m({id:"cl_accessory",label:"配件"},SY)
+  ]}),
+  m({id:"housing",label:"住",icon:"🏠",color:"#7EC47E"},PM,{children:[
+    m({id:"h_fixed",label:"固定支出"},PM,{children:[
+      m({id:"h_rent",label:"房租"},PM),
+      m({id:"h_mgmt",label:"社區管理費"},PM),
+      m({id:"h_water",label:"水費"},PM),
+      m({id:"h_electric",label:"電費"},PM),
+      m({id:"h_gas",label:"瓦斯費"},PM),
+      m({id:"h_cable",label:"第四台網路"},PM)
+    ]}),
+    m({id:"h_daily",label:"日用品"},SY)
+  ]}),
+  m({id:"transport",label:"行",icon:"🚌",color:"#5B8DEF"},PM,{children:[
+    m({id:"t_public",label:"大眾交通"},SY),
+    m({id:"t_gas",label:"加油"},SY),
+    m({id:"t_parking",label:"停車費"},SY),
+    m({id:"t_rental",label:"租車"},SY)
+  ]}),
+  m({id:"education",label:"育",icon:"📚",color:"#F2C94C"},PM,{children:[
+    m({id:"ed_tuition",label:"學費"},SY),
+    m({id:"ed_books",label:"買書"},SY)
+  ]}),
+  m({id:"fun",label:"樂",icon:"🎬",color:"#FF7EB3"},PM,{children:[
+    m({id:"f_phone",label:"手機"},SY),
+    m({id:"f_feast",label:"大餐"},SY)
+  ]}),
+  m({id:"medical",label:"醫療",icon:"💊",color:"#5BC0BE"},PM,{children:[
+    m({id:"m_clinic",label:"門診"},SY),
+    m({id:"m_emergency",label:"急診"},SY)
+  ]}),
+  m({id:"social",label:"交際",icon:"🤝",color:"#E8916A"},PM,{children:[
+    m({id:"s_wedding",label:"婚"},SY),
+    m({id:"s_funeral",label:"喪紅包",askRecipient:true},SY),
+    m({id:"s_newyear",label:"壓歲錢",askRecipient:true},SY)
+  ]}),
+  m({id:"baby",label:"寶寶",icon:"👶",color:"#F4A0C0"},PM,{children:[
+    m({id:"b_formula",label:"奶粉"},SY),
+    m({id:"b_diaper",label:"尿布"},SY),
+    m({id:"b_supplies",label:"婦嬰用品"},SY),
+    m({id:"b_clothes",label:"嬰兒衣物"},SY)
+  ]}),
+  m({id:"other",label:"其它",icon:"📌",color:"#8E8E93"},PM,{children:[]})
+];
+
+var PXMART = {
+  id:"pxmart",label:"全聯",icon:"🛒",color:"#D63031",builtIn:true,
+  sections:[
+    {label:"🍜 食品",items:[
+      {id:"q_px_milk",label:"鮮奶",price:75,path:["food","groceries"]},
+      {id:"q_px_egg",label:"雞蛋",price:79,path:["food","groceries"]},
+      {id:"q_px_rice",label:"白米",price:239,path:["food","groceries"]},
+      {id:"q_px_veg",label:"蔬菜",price:35,path:["food","groceries"]},
+      {id:"q_px_tofu",label:"豆腐",price:25,path:["food","groceries"]},
+      {id:"q_px_noodle",label:"麵條",price:29,path:["food","groceries"]},
+      {id:"q_px_oil",label:"食用油",price:149,path:["food","groceries"]},
+      {id:"q_px_sauce",label:"醬油",price:69,path:["food","groceries"]}
+    ]},
+    {label:"🍪 零食飲料",items:[
+      {id:"q_px_snack",label:"零食",price:39,path:["food","snacks"]},
+      {id:"q_px_drink",label:"飲料",price:29,path:["food","snacks"]},
+      {id:"q_px_water",label:"礦泉水",price:59,path:["food","snacks"]},
+      {id:"q_px_coffee",label:"咖啡",price:39,path:["food","snacks"]}
+    ]},
+    {label:"🏠 日用品",items:[
+      {id:"q_px_tissue",label:"衛生紙",price:189,path:["housing","h_daily"]},
+      {id:"q_px_detergent",label:"洗衣精",price:169,path:["housing","h_daily"]},
+      {id:"q_px_dish",label:"洗碗精",price:79,path:["housing","h_daily"]},
+      {id:"q_px_trash",label:"垃圾袋",price:65,path:["housing","h_daily"]},
+      {id:"q_px_shampoo",label:"洗髮精",price:199,path:["housing","h_daily"]},
+      {id:"q_px_soap",label:"沐浴乳",price:159,path:["housing","h_daily"]}
+    ]},
+    {label:"👶 寶寶",items:[
+      {id:"q_px_formula",label:"奶粉",price:850,path:["baby","b_formula"]},
+      {id:"q_px_diaper",label:"尿布",price:399,path:["baby","b_diaper"]},
+      {id:"q_px_wipes",label:"濕紙巾",price:89,path:["baby","b_supplies"]}
+    ]}
+  ]
+};
+
+/* ═══════════ 記帳者 ═══════════ */
+var RECORDERS = [
+  { id:"wei", label:"唯", color:"#E8913A" },
+  { id:"hong", label:"弘", color:"#5B8DEF" },
+  { id:"man", label:"漫", color:"#C77DBA" }
+];
+function recById(id){ for(var i=0;i<RECORDERS.length;i++){ if(RECORDERS[i].id===id) return RECORDERS[i]; } return null; }
+
+/* ═══════════ Helpers ═══════════ */
+var fmt = function(n){ return "$" + Number(n||0).toLocaleString(); };
+var MONTHS = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+var TODAY = new Date().toISOString().slice(0,10);
+var MSTART = TODAY.slice(0,7) + "-01";
+var EXPIRE_DAYS = 100, DAY_MS = 86400000;
+var esc = function(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+
+function fds(ds){ var d=new Date(ds); var w=["日","一","二","三","四","五","六"]; return (d.getMonth()+1)+"/"+d.getDate()+"（"+w[d.getDay()]+"）"; }
+function gr(t,id){ for(var i=0;i<t.length;i++){ if(t[i].id===id) return t[i]; } return null; }
+function fn(t,p){ var n=null, ch=t; for(var i=0;i<p.length;i++){ n=null; for(var j=0;j<ch.length;j++){ if(ch[j].id===p[i]){ n=ch[j]; break; } } if(!n) return null; ch=n.children||[]; } return n; }
+function bl(t,p){ var r=[], ch=t; for(var i=0;i<p.length;i++){ var found=null; for(var j=0;j<ch.length;j++){ if(ch[j].id===p[i]){ found=ch[j]; break; } } if(!found) break; r.push(found.label); ch=found.children||[]; } return r; }
+function psw(ep,pf){ if(pf.length>ep.length) return false; for(var i=0;i<pf.length;i++){ if(ep[i]!==pf[i]) return false; } return true; }
+function pe(a,b){ if(a.length!==b.length) return false; for(var i=0;i<a.length;i++){ if(a[i]!==b[i]) return false; } return true; }
+function cStores(ns,pp){ var r=[]; for(var i=0;i<ns.length;i++){ var n=ns[i]; var p=pp.concat([n.id]); if(n.isStore) r.push(m(n,{treePath:p})); if(n.children) r=r.concat(cStores(n.children,p)); } return r; }
+function cLeaves(ns,pp){ var r=[]; for(var i=0;i<ns.length;i++){ var n=ns[i]; var p=pp.concat([n.id]); if(!n.children||n.children.length===0) r.push(m(n,{treePath:p})); else r=r.concat(cLeaves(n.children,p)); } return r; }
+function cloneT(t){ return t.map(function(n){ return m(n,{children:n.children?cloneT(n.children):undefined}); }); }
+function addNode(t,pp,nn){ var c=cloneT(t); if(pp.length===0){ c.push(nn); return c; } var p=fn(c,pp); if(p){ if(!p.children) p.children=[]; p.children.push(nn); } return c; }
+
+function cleanT(t,entries,today){
+  var cut = new Date(new Date(today).getTime() - EXPIRE_DAYS*DAY_MS).toISOString().slice(0,10);
+  function hasRecent(np){ return entries.some(function(e){ return psw(e.path,np) && e.date>=cut; }); }
+  function hasAny(np){ return entries.some(function(e){ return psw(e.path,np); }); }
+  function cl(ns,pp){
+    return ns.filter(function(n){
+      var np = pp.concat([n.id]);
+      if(n.permanent){ if(n.children) n.children=cl(n.children,np); return true; }
+      if(hasRecent(np)){ if(n.children) n.children=cl(n.children,np); return true; }
+      if(n.createdAt && n.createdAt>=cut){ if(n.children) n.children=cl(n.children,np); return true; }
+      if(n.system && !hasAny(np)){ if(n.children) n.children=cl(n.children,np); return true; }
+      return false;
+    });
+  }
+  return cl(cloneT(t),[]);
+}
+
+function buildQS(tree,sp,sn,entries){
+  var rc = gr(tree,sp[0]); var color = rc?rc.color:"#E8913A"; var icon = rc?rc.icon:"📌";
+  function getLP(p){ var s=entries.filter(function(e){ return pe(e.path,p); }).sort(function(a,b){ return b.date>a.date?1:(b.date<a.date?-1:b.id-a.id); }); return s.length>0?s[0].unitPrice:0; }
+  function bi(ch,pp){ var items=[]; (ch||[]).forEach(function(c){ var p=pp.concat([c.id]); if(!c.children||c.children.length===0){ items.push({id:"q_"+p.join("_"),label:c.label,price:getLP(p),path:p,addVeg:c.addVeg}); } else { items=items.concat(bi(c.children,p)); } }); return items; }
+  function bs(ch,pp){ var secs=[]; (ch||[]).forEach(function(c){ var p=pp.concat([c.id]); if(c.children&&c.children.length>0){ var items=bi(c.children,p); if(items.length>0) secs.push({label:c.label,items:items}); } else { var mm=null; for(var i=0;i<secs.length;i++){ if(secs[i].label==="品項"){ mm=secs[i]; break; } } if(!mm){ mm={label:"品項",items:[]}; secs.push(mm); } mm.items.push({id:"q_"+p.join("_"),label:c.label,price:getLP(p),path:p,addVeg:c.addVeg}); } }); return secs; }
+  if(!sn.children||sn.children.length===0){ return {id:sp.join("_"),label:sn.label,icon:icon,color:color,sections:[{label:"品項",items:[{id:"q_"+sp.join("_"),label:sn.label,price:getLP(sp),path:sp}]}]}; }
+  return {id:sp.join("_"),label:sn.label,icon:icon,color:color,sections:bs(sn.children,sp)};
+}
+
+/* ═══════════ 資料儲存 ═══════════ */
+var SAMPLE = [
+  {id:1,path:["food","eating_out","fengsheng","fs_meal","fs_tomato"],unitPrice:95,qty:1,amount:95,note:"番茄起士蛋吐司（加菜）",recorder:"wei",date:"2026-05-09"},
+  {id:2,path:["food","eating_out","fengsheng","fs_drink","fs_coffee"],unitPrice:55,qty:1,amount:55,note:"美式咖啡",recorder:"hong",date:"2026-05-09"},
+  {id:3,path:["food","eating_out","fengsheng","fs_drink","fs_redbull"],unitPrice:65,qty:2,amount:130,note:"紅牛大杯 ×2",recorder:"wei",date:"2026-05-09"},
+  {id:4,path:["transport","t_gas"],unitPrice:1280,qty:1,amount:1280,note:"加油",recorder:"hong",date:"2026-05-08"},
+  {id:5,path:["food","eating_out","lvwen","lw_sesame"],unitPrice:55,qty:1,amount:55,note:"麻醬麵",recorder:"man",date:"2026-05-08"},
+  {id:6,path:["housing","h_fixed","h_electric"],unitPrice:1850,qty:1,amount:1850,note:"電費",recorder:"wei",date:"2026-05-06"},
+  {id:7,path:["housing","h_daily"],unitPrice:790,qty:1,amount:790,note:"日用品",recorder:"man",date:"2026-05-05"},
+  {id:8,path:["medical","m_clinic"],unitPrice:550,qty:1,amount:550,note:"看診",recorder:"hong",date:"2026-05-03"},
+  {id:9,path:["baby","b_formula"],unitPrice:850,qty:1,amount:850,note:"奶粉",recorder:"wei",date:"2026-05-03"}
+];
+
+var STORE_KEY = "home-budget-app";
+var db = { tree:null, entries:null, qsIds:null, seeded:false, recorder:"wei", sync:{passphrase:null,enabled:false} };
+function loadDB(){
+  try{
+    var raw = localStorage.getItem(STORE_KEY);
+    if(raw){
+      var d = JSON.parse(raw);
+      db.tree = Array.isArray(d.tree)?d.tree:cloneT(INIT_TREE);
+      db.entries = Array.isArray(d.entries)?d.entries:[];
+      db.qsIds = Array.isArray(d.qsIds)?d.qsIds:["fengsheng","lvwen","pxmart"];
+      db.seeded = !!d.seeded;
+      db.recorder = recById(d.recorder) ? d.recorder : "wei";
+      db.sync = { passphrase:(d.sync&&d.sync.passphrase)||null, enabled:!!(d.sync&&d.sync.enabled) };
+      return;
+    }
+  }catch(e){}
+  // first run: seed with sample so it isn't empty
+  db.tree = cloneT(INIT_TREE);
+  db.entries = SAMPLE.slice();
+  db.qsIds = ["fengsheng","lvwen","pxmart"];
+  db.seeded = true;
+  db.sync = { passphrase:null, enabled:false };
+}
+function saveDB(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify({tree:db.tree,entries:db.entries,qsIds:db.qsIds,seeded:db.seeded,recorder:db.recorder,sync:db.sync})); }catch(e){} }
+
+/* ═══════════ 加密 (AES-GCM via Web Crypto) ═══════════ */
+var enc = new TextEncoder(); var dec = new TextDecoder();
+var cryptoKey = null; var cryptoKeyPhrase = null;
+var FIXED_SALT = enc.encode('budget-fixed-salt-2026');
+function bufToB64(buf){ var bytes=new Uint8Array(buf); var s=''; for(var i=0;i<bytes.length;i++) s+=String.fromCharCode(bytes[i]); return btoa(s); }
+function b64ToBuf(b64){ var s=atob(b64); var bytes=new Uint8Array(s.length); for(var i=0;i<s.length;i++) bytes[i]=s.charCodeAt(i); return bytes.buffer; }
+async function deriveKey(passphrase){
+  if(cryptoKey && cryptoKeyPhrase===passphrase) return cryptoKey;
+  var baseKey = await crypto.subtle.importKey('raw', enc.encode(passphrase), 'PBKDF2', false, ['deriveKey']);
+  cryptoKey = await crypto.subtle.deriveKey({name:'PBKDF2',salt:FIXED_SALT,iterations:100000,hash:'SHA-256'}, baseKey, {name:'AES-GCM',length:256}, false, ['encrypt','decrypt']);
+  cryptoKeyPhrase = passphrase; return cryptoKey;
+}
+async function encryptObj(obj, passphrase){
+  var key=await deriveKey(passphrase); var iv=crypto.getRandomValues(new Uint8Array(12));
+  var ct=await crypto.subtle.encrypt({name:'AES-GCM',iv:iv}, key, enc.encode(JSON.stringify(obj)));
+  return { iv:bufToB64(iv), ct:bufToB64(ct) };
+}
+async function decryptObj(payload, passphrase){
+  var key=await deriveKey(passphrase); var iv=new Uint8Array(b64ToBuf(payload.iv));
+  var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:iv}, key, b64ToBuf(payload.ct));
+  return JSON.parse(dec.decode(pt));
+}
+
+/* ═══════════ Firebase 同步引擎 ═══════════ */
+var sync = { fb:null, dbRef:null, unsub:null, state:'off', lastError:'', pending:false };
+function fbConfigValid(){ return FIREBASE_CONFIG && FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.apiKey.indexOf('貼上')===-1; }
+function initFirebase(){
+  if(sync.fb) return true;
+  if(!fbConfigValid() || typeof firebase==='undefined') return false;
+  try{
+    sync.fb = firebase.initializeApp(FIREBASE_CONFIG);
+    var fs = firebase.firestore();
+    try{ fs.enablePersistence({synchronizeTabs:true}).catch(function(){}); }catch(e){}
+    sync.dbRef = fs.collection('budget_records'); return true;
+  }catch(e){ sync.lastError=e.message; sync.state='error'; return false; }
+}
+function renderSyncBar(){ if(ui.view==='settings') render(); }
+async function pushRecord(item){
+  if(!sync.dbRef || !db.sync.passphrase) return;
+  try{
+    var payload = await encryptObj(item, db.sync.passphrase);
+    await sync.dbRef.doc(String(item.id)).set({ iv:payload.iv, ct:payload.ct, updatedAt:item.updatedAt||Date.now() });
+    if(sync.pending){ sync.pending=false; renderSyncBar(); }
+  }catch(e){ sync.pending=true; renderSyncBar(); }
+}
+async function pushAll(){
+  if(!sync.dbRef || !db.sync.passphrase) return;
+  for(var i=0;i<db.entries.length;i++){ await pushRecord(db.entries[i]); }
+}
+function mergeRecord(remote){
+  var idx=-1; for(var i=0;i<db.entries.length;i++){ if(String(db.entries[i].id)===String(remote.id)){ idx=i; break; } }
+  if(idx===-1){ if(remote.deleted) return false; db.entries.push(remote); return true; }
+  var local=db.entries[idx];
+  if((remote.updatedAt||0) > (local.updatedAt||0)){
+    if(remote.deleted){ db.entries.splice(idx,1); return true; }
+    db.entries[idx]=remote; return true;
+  }
+  return false;
+}
+function startListening(){
+  if(!sync.dbRef || !db.sync.passphrase){ sync.state='nokey'; renderSyncBar(); return; }
+  if(sync.unsub) sync.unsub();
+  sync.state='connecting'; renderSyncBar();
+  sync.unsub = sync.dbRef.onSnapshot(async function(snap){
+    var changed=false;
+    for(var i=0;i<snap.docs.length;i++){
+      var d=snap.docs[i].data(); if(!d||!d.ct) continue;
+      try{ var item=await decryptObj({iv:d.iv,ct:d.ct}, db.sync.passphrase); changed=mergeRecord(item)||changed; }catch(e){ continue; }
+    }
+    sync.state='on';
+    if(changed){ saveDB(); render(); } else renderSyncBar();
+  }, function(err){ sync.state='error'; sync.lastError=err.message; renderSyncBar(); });
+}
+async function enableSync(){
+  if(!db.sync.passphrase){ sync.state='nokey'; renderSyncBar(); return; }
+  if(!initFirebase()){ if(sync.state!=='error') sync.state='error'; renderSyncBar(); return; }
+  db.sync.enabled=true; saveDB(); startListening(); await pushAll();
+}
+function stopSync(){ if(sync.unsub){ sync.unsub(); sync.unsub=null; } sync.state='off'; renderSyncBar(); }
+function pushEntry(item){ if(sync.state==='on'||sync.state==='connecting') pushRecord(item); }
+function pushDelete(id){ if(sync.state==='on'||sync.state==='connecting') pushRecord({id:id,deleted:true,updatedAt:Date.now()}); }
+
+/* ═══════════ UI 狀態 ═══════════ */
+var ui = {
+  view:"home", toast:null,
+  navPath:[], selItem:null, addVeg:false, amt:"", qty:1, note:"", recip:"", showNew:false, newName:"", newType:"item",
+  editEntry:null, editAmt:"", editQty:1, editNote:"", editDate:"", editRecorder:"wei",
+  qFrom:MSTART, qTo:TODAY, qMode:"category", qDrill:null, qItemDrill:null, qMemberDrill:null,
+  qStore:null, cart:[], editCartIdx:null, editCartP:"", showPick:false, cashPaid:"",
+  homeDrill:null, homeDrillMonth:null,
+  listFilter:[], phraseModal:null
+};
+
+var app = document.getElementById('app');
+var toastTimer = null;
+function showToast(msg){ ui.toast=msg; render(); if(toastTimer) clearTimeout(toastTimer); toastTimer=setTimeout(function(){ ui.toast=null; render(); },1800); }
+
+/* ═══════════ 衍生資料 ═══════════ */
+function getLP(path){ var s=db.entries.filter(function(e){ return pe(e.path,path); }).sort(function(a,b){ return b.date>a.date?1:(b.date<a.date?-1:b.id-a.id); }); return s.length>0?String(s[0].unitPrice):""; }
+
+/* ═══════════ 元件：甜甜圈圖 ═══════════ */
+function pieChartHTML(data){
+  var hasData = data.filter(function(d){ return d.total>0; });
+  var grand = hasData.reduce(function(s,d){ return s+d.total; },0);
+  if(grand===0) return '<div style="text-align:center;color:#8E8E93;padding:30px">尚無紀錄</div>';
+  var size=200, cx=100, cy=100, r=80, ir=50;
+  var cum=-90;
+  function p2c(radius,ang){ var rad=ang*Math.PI/180; return {x:cx+radius*Math.cos(rad), y:cy+radius*Math.sin(rad)}; }
+  function arc(startA,sweep){ if(sweep>=359.99) sweep=359.99; var s1=p2c(r,startA), e1=p2c(r,startA+sweep), s2=p2c(ir,startA+sweep), e2=p2c(ir,startA); var large=sweep>180?1:0; return "M"+s1.x+","+s1.y+" A"+r+","+r+" 0 "+large+" 1 "+e1.x+","+e1.y+" L"+s2.x+","+s2.y+" A"+ir+","+ir+" 0 "+large+" 0 "+e2.x+","+e2.y+" Z"; }
+  var paths='';
+  hasData.forEach(function(d){ var pct=d.total/grand; var sa=cum; var sw=pct*360; cum+=sw; paths+='<path d="'+arc(sa,sw)+'" fill="'+d.color+'" data-act="homeDrill" data-arg="'+d.id+'" style="cursor:pointer"></path>'; });
+  var legend = hasData.map(function(d){ var pct=Math.round((d.total/grand)*100); return '<div data-act="homeDrill" data-arg="'+d.id+'" style="display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;cursor:pointer;background:#FAFAF8;border:1px solid #F0EDE8"><div style="width:10px;height:10px;border-radius:3px;background:'+d.color+';flex-shrink:0"></div><span style="font-size:13px;font-weight:600">'+esc(d.label)+'</span><span style="font-size:12px;color:#8E8E93" class="tnum">'+fmt(d.total)+'</span><span style="font-size:11px;color:#B0ADA8">'+pct+'%</span></div>'; }).join('');
+  return '<div><div style="display:flex;justify-content:center;margin-bottom:16px"><svg width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">'+paths+'<text x="'+cx+'" y="'+(cy-6)+'" text-anchor="middle" style="font-size:18px;font-weight:800;fill:#1A1A1A">'+fmt(grand)+'</text><text x="'+cx+'" y="'+(cy+14)+'" text-anchor="middle" style="font-size:11px;fill:#8E8E93">總支出</text></svg></div><div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">'+legend+'</div></div>';
+}
+
+function stepper(act,arg,label,disabled,sz){ sz=sz||36; var col=disabled?"#D0CCC6":"var(--ac)"; var bg=disabled?"#F7F5F2":"var(--sf)"; return '<button '+(disabled?'':'data-act="'+act+'" data-arg="'+(arg==null?'':arg)+'"')+' style="width:'+sz+'px;height:'+sz+'px;border-radius:50%;border:1.5px solid #E8E4DE;background:'+bg+';color:'+col+';font-size:'+(sz>30?20:16)+'px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1"'+(disabled?' disabled':'')+'>'+label+'</button>'; }
+
+function recorderPicker(currentId, act){
+  var chips = RECORDERS.map(function(r){
+    var on = r.id===currentId;
+    return '<button data-act="'+act+'" data-arg="'+r.id+'" style="flex:1;border:'+(on?'none':'1.5px solid #E8E4DE')+';border-radius:10px;padding:10px 0;font-size:15px;font-weight:'+(on?'700':'500')+';background:'+(on?r.color:'var(--sf)')+';color:'+(on?'#fff':'var(--t2)')+'">'+esc(r.label)+'</button>';
+  }).join('');
+  return '<div style="display:flex;gap:8px">'+chips+'</div>';
+}
+function recorderBadge(recorderId){
+  var r = recById(recorderId); if(!r) return '';
+  return '<span style="display:inline-flex;align-items:center;gap:3px;font-size:11px;color:'+r.color+';font-weight:600;background:'+r.color+'14;border-radius:5px;padding:1px 6px;margin-left:6px">'+esc(r.label)+'</span>';
+}
+
+function entryRowHTML(e,last){
+  var q = (e.qty||1);
+  return '<div style="display:flex;align-items:center;padding:12px 0;border-bottom:'+(last?'none':'1px solid #F0EDE8')+'"><div style="flex:1"><div style="font-size:14px;font-weight:600">'+esc(e.note)+recorderBadge(e.recorder)+'</div><div style="font-size:12px;color:var(--t2);margin-top:2px">'+fds(e.date)+(q>1?'<span style="margin-left:8px;color:var(--ac)">單價 '+fmt(e.unitPrice)+' × '+q+'</span>':'')+'</div></div><div style="font-size:16px;font-weight:700;color:var(--dg);flex-shrink:0" class="tnum">−'+fmt(e.amount)+'</div></div>';
+}
+
+/* ═══════════ 各頁面 render ═══════════ */
+function homeHTML(){
+  var selMonth = new Date().getMonth();
+  var mEntries = db.entries.filter(function(e){ return new Date(e.date).getMonth()===selMonth; });
+  var totalExp = mEntries.reduce(function(s,e){ return s+e.amount; },0);
+  var map={}; mEntries.forEach(function(e){ map[e.path[0]]=(map[e.path[0]]||0)+e.amount; });
+  var catTotals = db.tree.map(function(c){ return m(c,{total:map[c.id]||0}); });
+
+  var h = '<div style="padding:20px 16px 100px" class="fade">';
+  h += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px"><div><div style="font-size:13px;color:var(--t2);margin-bottom:2px">2026 · '+MONTHS[selMonth]+'</div><div style="font-size:26px;font-weight:800">家庭記帳</div></div><div style="width:42px;height:42px;border-radius:50%;background:var(--al);display:flex;align-items:center;justify-content:center;font-size:20px">🏡</div></div>';
+  h += '<div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,var(--ac) 0%,#D4782E 100%);color:#fff;position:relative;overflow:hidden"><div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.1)"></div><div style="font-size:13px;opacity:.85;margin-bottom:4px">本月支出</div><div style="font-size:36px;font-weight:800" class="tnum">'+fmt(totalExp)+'</div><div style="font-size:12px;opacity:.7;margin-top:6px">共 '+mEntries.length+' 筆紀錄</div></div>';
+
+  // 分類統計卡（含下鑽）
+  h += '<div class="card" style="margin-bottom:20px">';
+  if(!ui.homeDrill){
+    h += '<div style="font-size:15px;font-weight:700;margin-bottom:16px">分類統計</div>' + pieChartHTML(catTotals);
+  } else {
+    var hc = gr(db.tree, ui.homeDrill);
+    if(ui.homeDrillMonth===null){
+      var catEntries = db.entries.filter(function(e){ return e.path[0]===ui.homeDrill; });
+      var mm={}; catEntries.forEach(function(e){ var d=new Date(e.date); var key=d.getFullYear()+"-"+String(d.getMonth()).padStart(2,"0"); if(!mm[key]) mm[key]={key:key,year:d.getFullYear(),month:d.getMonth(),count:0,total:0}; mm[key].count++; mm[key].total+=e.amount; });
+      var months = Object.keys(mm).map(function(k){ return mm[k]; }).sort(function(a,b){ return b.key.localeCompare(a.key); });
+      h += '<button data-act="homeDrillClear" style="background:none;border:none;font-size:14px;color:var(--ac);font-weight:600;margin-bottom:14px;padding:0">← 分類統計</button>';
+      h += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:16px"><div style="width:36px;height:36px;border-radius:10px;background:'+(hc?hc.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:18px">'+(hc?hc.icon:"📌")+'</div><div style="font-size:18px;font-weight:800">'+(hc?esc(hc.label):"")+'</div></div>';
+      if(months.length===0){ h += '<div style="text-align:center;color:var(--t2);padding:20px">尚無紀錄</div>'; }
+      else { months.forEach(function(mo,i){ h += '<div data-act="homeDrillMonth" data-arg="'+mo.month+'" style="display:flex;align-items:center;padding:13px 0;border-top:'+(i>0?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="flex:1"><div style="font-size:15px;font-weight:600">'+mo.year+' · '+MONTHS[mo.month]+'</div></div><div style="text-align:right;flex-shrink:0;margin-right:8px"><div style="font-size:15px;font-weight:700;color:var(--dg)" class="tnum">−'+fmt(mo.total)+'</div><div style="font-size:11px;color:var(--t2)">'+mo.count+' 筆</div></div><span style="font-size:13px;color:#C4C0BA;flex-shrink:0">›</span></div>'; }); }
+    } else {
+      var de = db.entries.filter(function(e){ if(e.path[0]!==ui.homeDrill) return false; return new Date(e.date).getMonth()===ui.homeDrillMonth; }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+      var deTotal = de.reduce(function(s,e){ return s+e.amount; },0);
+      h += '<button data-act="homeDrillMonthClear" style="background:none;border:none;font-size:14px;color:var(--ac);font-weight:600;margin-bottom:14px;padding:0">← '+(hc?esc(hc.label):"")+'</button>';
+      h += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:4px"><div style="width:32px;height:32px;border-radius:8px;background:'+(hc?hc.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:16px">'+(hc?hc.icon:"📌")+'</div><div style="font-size:16px;font-weight:800">'+(hc?esc(hc.label):"")+' · '+MONTHS[ui.homeDrillMonth]+'</div></div>';
+      h += '<div style="font-size:13px;color:var(--dg);font-weight:700;margin-bottom:14px">合計 '+fmt(deTotal)+'（'+de.length+' 筆）</div>';
+      de.forEach(function(e,i){ h += '<div data-act="startEdit" data-arg="'+e.id+'" style="display:flex;align-items:center;padding:12px 0;border-top:'+(i>0?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="flex:1"><div style="font-size:14px;font-weight:600">'+esc(e.note)+recorderBadge(e.recorder)+'</div><div style="font-size:12px;color:var(--t2);margin-top:2px">'+esc(bl(db.tree,e.path).slice(1).join(" › "))+' · '+fds(e.date)+((e.qty||1)>1?'<span style="margin-left:8px;color:var(--ac)">單價 '+fmt(e.unitPrice)+' × '+e.qty+'</span>':'')+'</div></div><div style="font-size:15px;font-weight:700;color:var(--dg);flex-shrink:0" class="tnum">−'+fmt(e.amount)+'</div></div>'; });
+    }
+  }
+  h += '</div>';
+
+  // 最近紀錄
+  h += '<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:15px;font-weight:700">最近紀錄</div><button data-act="tab" data-arg="list" style="background:none;border:none;color:var(--ac);font-size:13px;font-weight:600">查看全部 →</button></div>';
+  var recent = mEntries.slice(0,5);
+  recent.forEach(function(e,i){ var root=gr(db.tree,e.path[0]); h += '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:'+(i>0?'1px solid #F0EDE8':'none')+'"><div style="width:38px;height:38px;border-radius:10px;background:'+(root?root.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">'+(root?root.icon:"📌")+'</div><div data-act="startEdit" data-arg="'+e.id+'" style="flex:1;min-width:0;cursor:pointer"><div style="font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(e.note)+recorderBadge(e.recorder)+'</div><div style="font-size:11px;color:var(--t2)">'+esc(bl(db.tree,e.path).join(" › "))+' · '+fds(e.date)+'</div></div><div style="font-size:15px;font-weight:700;color:var(--dg);flex-shrink:0" class="tnum">−'+fmt(e.amount)+'</div></div>'; });
+  if(recent.length===0) h += '<div style="text-align:center;color:var(--t2);padding:20px">本月尚無紀錄</div>';
+  h += '</div></div>';
+  return h;
+}
+
+function addHTML(){
+  var curNode = ui.navPath.length>0 ? fn(db.tree, ui.navPath) : null;
+  var curChildren = ui.navPath.length===0 ? db.tree : (curNode?(curNode.children||[]):[]);
+  var isLeaf = curNode && (!curNode.children || curNode.children.length===0);
+  var rootCat = ui.navPath.length>0 ? gr(db.tree, ui.navPath[0]) : null;
+  var showAmt = isLeaf || ui.selItem;
+  var crumbs = bl(db.tree, ui.navPath);
+  var uPrice = Number(ui.amt)||0;
+  var tPrice = uPrice*ui.qty;
+
+  var h = '<div style="padding:20px 16px 100px" class="fade">';
+  h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><button data-act="addBack" style="background:none;border:none;font-size:22px;padding:0;line-height:1">←</button><div style="font-size:22px;font-weight:800">'+(showAmt?"輸入金額":(ui.navPath.length===0?"選擇類別":"選擇項目"))+'</div></div>';
+  if(ui.navPath.length>0){ var cb=''; crumbs.forEach(function(b,i){ cb += (i>0?'<span style="margin:0 2px;color:#ccc">›</span>':'')+'<span style="font-size:12px;color:'+(i===crumbs.length-1?'var(--ac)':'var(--t2)')+';font-weight:'+(i===crumbs.length-1?'700':'400')+'">'+esc(b)+'</span>'; }); h += '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:18px;padding-left:34px">'+cb+'</div>'; }
+
+  if(!showAmt){
+    h += '<div class="card">';
+    if(ui.navPath.length===0){
+      h += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">';
+      db.tree.forEach(function(cat){ h += '<button data-act="topCat" data-arg="'+cat.id+'" style="background:'+cat.color+'12;border:2px solid transparent;border-radius:14px;padding:18px 8px;display:flex;flex-direction:column;align-items:center;gap:6px"><span style="font-size:28px">'+cat.icon+'</span><span style="font-size:14px;font-weight:700;color:var(--t1)">'+esc(cat.label)+'</span></button>'; });
+      h += '</div>';
+    } else {
+      h += '<div style="display:flex;flex-direction:column;gap:2px">';
+      curChildren.forEach(function(child){ var hasCh = child.children&&child.children.length>0; h += '<button data-act="drill" data-arg="'+child.id+'" style="background:transparent;border:none;border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;text-align:left;width:100%"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:15px;font-weight:600;color:var(--t1)">'+esc(child.label)+'</span>'+(!child.system?'<span style="font-size:9px;color:var(--ac);background:var(--al);border-radius:4px;padding:1px 5px">自訂</span>':'')+'</div>'+(hasCh?'<span style="font-size:14px;color:#C4C0BA">›</span>':'<span style="font-size:11px;color:#C4C0BA;background:#F7F5F2;border-radius:6px;padding:2px 8px">選擇</span>')+'</button>'; });
+      if(!ui.showNew){
+        h += '<button data-act="showNew" style="background:transparent;border:2px dashed #E8E4DE;border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;color:var(--ac);font-size:14px;font-weight:600">＋ 新增項目</button>';
+      } else {
+        h += '<div style="margin-top:8px;padding:14px;background:#FAFAF8;border-radius:12px;border:1.5px solid var(--ac)40">';
+        h += '<input type="text" data-bind="newName" value="'+esc(ui.newName)+'" placeholder="輸入名稱" style="width:100%;border:none;outline:none;font-size:15px;background:transparent;color:var(--t1);padding:8px 0;border-bottom:1.5px solid #E8E4DE;margin-bottom:12px">';
+        h += '<div style="display:flex;gap:8px;margin-bottom:12px">';
+        [{k:"item",l:"一般項目"},{k:"store",l:"商家"}].forEach(function(t){ h += '<button data-act="newType" data-arg="'+t.k+'" style="flex:1;border:none;border-radius:8px;padding:8px 0;font-size:13px;font-weight:600;background:'+(ui.newType===t.k?'var(--ac)':'#F0EDE8')+';color:'+(ui.newType===t.k?'#fff':'var(--t2)')+'">'+t.l+'</button>'; });
+        h += '</div><div style="display:flex;gap:8px"><button data-act="newCancel" style="flex:1;border:1.5px solid #E8E4DE;border-radius:8px;padding:10px 0;font-size:14px;font-weight:600;background:var(--sf);color:var(--t2)">取消</button><button data-act="newConfirm" style="flex:1;border:none;border-radius:8px;padding:10px 0;font-size:14px;font-weight:600;background:var(--ac);color:#fff">確認</button></div></div>';
+      }
+      h += '</div>';
+    }
+    h += '</div>';
+  } else {
+    h += '<div class="card" style="margin-bottom:14px;text-align:center;background:'+(rootCat?rootCat.color+'08':'var(--sf)')+';border:'+(rootCat?'1.5px solid '+rootCat.color+'30':'none')+'"><div style="font-size:14px;color:var(--t2);margin-bottom:2px">項目</div><div style="font-size:18px;font-weight:700">'+(rootCat?rootCat.icon:'')+' '+esc(crumbs[crumbs.length-1]||'')+'</div></div>';
+    h += '<div class="card" style="margin-bottom:14px"><div style="font-size:13px;color:var(--t2);margin-bottom:10px">誰記帳？</div>'+recorderPicker(db.recorder,'setRecorder')+'</div>';
+    if(ui.selItem && ui.selItem.addVeg){
+      h += '<div class="card" style="margin-bottom:14px"><div data-act="toggleVeg" style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:15px;font-weight:600"><div style="width:24px;height:24px;border-radius:6px;border:'+(ui.addVeg?'2px solid var(--ac)':'2px solid #D0CCC6')+';background:'+(ui.addVeg?'var(--ac)':'transparent')+';display:flex;align-items:center;justify-content:center;flex-shrink:0">'+(ui.addVeg?'<span style="color:#fff;font-size:14px;line-height:1">✓</span>':'')+'</div>加菜 🥬</div></div>';
+    }
+    if(ui.selItem && ui.selItem.askRecipient){
+      h += '<div class="card" style="margin-bottom:14px"><div style="font-size:13px;color:var(--t2);margin-bottom:8px">給誰？</div><input type="text" data-bind="recip" value="'+esc(ui.recip)+'" placeholder="輸入對象姓名" style="width:100%;border:none;outline:none;font-size:15px;background:transparent;color:var(--t1);padding:8px 0;border-bottom:1.5px solid #E8E4DE"></div>';
+    }
+    var lpHint = (ui.amt && getLP(ui.navPath)===ui.amt);
+    h += '<div class="card" style="margin-bottom:14px;text-align:center"><div style="font-size:13px;color:var(--t2);margin-bottom:8px">單價 (TWD)</div><div style="display:flex;align-items:center;justify-content:center;gap:4px"><span style="font-size:28px;font-weight:300;color:var(--t2)">$</span><input type="number" data-bind="amt" value="'+esc(ui.amt)+'" placeholder="0" style="border:none;outline:none;font-size:42px;font-weight:800;width:60%;text-align:center;background:transparent;color:var(--t1)" class="tnum"></div>'+(lpHint?'<div style="font-size:11px;color:var(--t2);margin-top:6px">💡 已帶入上次金額</div>':'')+'</div>';
+    h += '<div class="card" style="margin-bottom:14px"><div style="font-size:13px;color:var(--t2);margin-bottom:12px;text-align:center">數量</div><div style="display:flex;align-items:center;justify-content:center;gap:20px">'+stepper('qtyMinus',null,'−',ui.qty<=1)+'<span style="font-size:32px;font-weight:800;min-width:40px;text-align:center">'+ui.qty+'</span>'+stepper('qtyPlus',null,'+',false)+'</div>'+(ui.qty>1&&uPrice>0?'<div style="text-align:center;margin-top:12px;font-size:14px;color:var(--ac);font-weight:700">'+fmt(uPrice)+' × '+ui.qty+' = '+fmt(tPrice)+'</div>':'')+'</div>';
+    h += '<div class="card" style="margin-bottom:24px"><div style="font-size:13px;color:var(--t2);margin-bottom:8px">備註（選填）</div><input type="text" data-bind="note" value="'+esc(ui.note)+'" placeholder="'+esc(crumbs[crumbs.length-1]||'')+'" style="width:100%;border:none;outline:none;font-size:15px;background:transparent;color:var(--t1);padding:8px 0;border-bottom:1.5px solid #E8E4DE"></div>';
+    h += '<button data-act="saveAdd" style="background:var(--ac);color:#fff;border:none;border-radius:12px;padding:14px 0;font-size:16px;font-weight:600;width:100%">確認新增'+(ui.qty>1?'（'+fmt(tPrice)+'）':'')+'</button>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function editHTML(){
+  var e = ui.editEntry; if(!e) return '';
+  var root = gr(db.tree, e.path[0]);
+  var col = root?root.color:"#ccc";
+  var ea = Number(ui.editAmt)||0;
+  var h = '<div style="padding:20px 16px 100px" class="fade">';
+  h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px"><button data-act="editClose" style="background:none;border:none;font-size:22px;padding:0;line-height:1">←</button><div style="font-size:22px;font-weight:800">編輯紀錄</div></div>';
+  h += '<div class="card" style="margin-bottom:14px;text-align:center;background:'+col+'08;border:1.5px solid '+col+'30"><div style="font-size:12px;color:var(--t2);margin-bottom:4px">'+esc(bl(db.tree,e.path).join(" › "))+'</div><div style="font-size:18px;font-weight:700">'+(root?root.icon:"📌")+' '+esc(bl(db.tree,e.path).slice(-1)[0]||'')+'</div></div>';
+  h += '<div class="card" style="margin-bottom:14px;text-align:center"><div style="font-size:13px;color:var(--t2);margin-bottom:8px">單價 (TWD)</div><div style="display:flex;align-items:center;justify-content:center;gap:4px"><span style="font-size:28px;font-weight:300;color:var(--t2)">$</span><input type="number" data-bind="editAmt" value="'+esc(ui.editAmt)+'" style="border:none;outline:none;font-size:42px;font-weight:800;width:60%;text-align:center;background:transparent;color:var(--t1)" class="tnum"></div></div>';
+  h += '<div class="card" style="margin-bottom:14px"><div style="font-size:13px;color:var(--t2);margin-bottom:12px;text-align:center">數量</div><div style="display:flex;align-items:center;justify-content:center;gap:20px">'+stepper('editQtyMinus',null,'−',ui.editQty<=1)+'<span style="font-size:32px;font-weight:800;min-width:40px;text-align:center">'+ui.editQty+'</span>'+stepper('editQtyPlus',null,'+',false)+'</div>'+(ui.editQty>1&&ea>0?'<div style="text-align:center;margin-top:12px;font-size:14px;color:var(--ac);font-weight:700">'+fmt(ea)+' × '+ui.editQty+' = '+fmt(ea*ui.editQty)+'</div>':'')+'</div>';
+  h += '<div class="card" style="margin-bottom:14px"><div style="font-size:13px;color:var(--t2);margin-bottom:8px">日期</div><input type="date" data-bind="editDate" value="'+esc(ui.editDate)+'" style="width:100%;border:1.5px solid #E8E4DE;border-radius:10px;padding:10px 12px;font-size:14px;color:var(--t1);background:#FAFAF8;outline:none"></div>';
+  h += '<div class="card" style="margin-bottom:14px"><div style="font-size:13px;color:var(--t2);margin-bottom:8px">備註</div><input type="text" data-bind="editNote" value="'+esc(ui.editNote)+'" style="width:100%;border:none;outline:none;font-size:15px;background:transparent;color:var(--t1);padding:8px 0;border-bottom:1.5px solid #E8E4DE"></div>';
+  h += '<div class="card" style="margin-bottom:24px"><div style="font-size:13px;color:var(--t2);margin-bottom:10px">記帳者</div>'+recorderPicker(ui.editRecorder,'editSetRecorder')+'</div>';
+  h += '<div style="display:flex;gap:10px"><button data-act="editDelete" style="flex:1;border:1.5px solid var(--dg);border-radius:12px;padding:14px 0;font-size:15px;font-weight:600;background:var(--sf);color:var(--dg)">刪除</button><button data-act="editSaveBtn" style="flex:2;background:var(--ac);color:#fff;border:none;border-radius:12px;padding:14px 0;font-size:15px;font-weight:600">儲存修改</button></div>';
+  h += '</div>';
+  return h;
+}
+
+function listHTML(){
+  var selMonth = new Date().getMonth();
+  var monthEntries = db.entries.filter(function(e){ return new Date(e.date).getMonth()===selMonth; });
+  var filter = ui.listFilter || [];
+  var mEntries = filter.length===0 ? monthEntries : monthEntries.filter(function(e){ return filter.indexOf(e.recorder||"")!==-1; });
+  var filterTotal = mEntries.reduce(function(s,e){ return s+e.amount; },0);
+
+  var h = '<div style="padding:20px 16px 100px" class="fade">';
+  h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><button data-act="tab" data-arg="home" style="background:none;border:none;font-size:22px;padding:0;line-height:1">←</button><div style="font-size:22px;font-weight:800">所有紀錄</div><div style="margin-left:auto;font-size:13px;color:var(--t2)">'+mEntries.length+' 筆</div></div>';
+
+  // 記帳者篩選（可複選）
+  var chips = RECORDERS.map(function(r){
+    var on = filter.indexOf(r.id)!==-1;
+    return '<button data-act="listFilterToggle" data-arg="'+r.id+'" style="flex:1;border:'+(on?'none':'1.5px solid #E8E4DE')+';border-radius:10px;padding:9px 0;font-size:14px;font-weight:'+(on?'700':'500')+';background:'+(on?r.color:'var(--sf)')+';color:'+(on?'#fff':'var(--t2)')+'">'+esc(r.label)+'</button>';
+  }).join('');
+  h += '<div style="margin-bottom:14px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><span style="font-size:12px;color:var(--t2)">篩選記帳者'+(filter.length>0?'（'+filter.map(function(id){ var r=recById(id); return r?r.label:'?'; }).join('＋')+'）':'（全部）')+'</span>'+(filter.length>0?'<button data-act="listFilterClear" style="background:none;border:none;font-size:12px;color:var(--ac);font-weight:600;padding:0">清除</button>':'')+'</div><div style="display:flex;gap:8px">'+chips+'</div></div>';
+
+  // 合計卡
+  h += '<div class="card" style="margin-bottom:14px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:var(--t2)">合計'+(filter.length>0?'（'+filter.map(function(id){ var r=recById(id); return r?r.label:'?'; }).join('＋')+'）':'（本月全部）')+'</span><span style="font-size:22px;font-weight:800;color:var(--dg)" class="tnum">−'+fmt(filterTotal)+'</span></div>';
+
+  h += '<div class="card">';
+  if(mEntries.length===0) h += '<div style="text-align:center;color:var(--t2);padding:40px">'+(filter.length>0?'這些記帳者本月無紀錄':'尚無紀錄')+'</div>';
+  mEntries.forEach(function(e,i){ var root=gr(db.tree,e.path[0]); h += '<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:'+(i>0?'1px solid #F0EDE8':'none')+'"><div style="width:40px;height:40px;border-radius:10px;background:'+(root?root.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">'+(root?root.icon:"📌")+'</div><div data-act="startEdit" data-arg="'+e.id+'" style="flex:1;min-width:0;cursor:pointer"><div style="font-size:14px;font-weight:600">'+esc(e.note)+recorderBadge(e.recorder)+'</div><div style="font-size:11px;color:var(--t2)">'+esc(bl(db.tree,e.path).join(" › "))+' · '+fds(e.date)+'</div></div><div style="font-size:15px;font-weight:700;color:var(--dg);flex-shrink:0" class="tnum">−'+fmt(e.amount)+'</div></div>'; });
+  h += '</div></div>';
+  return h;
+}
+
+function quickHTML(){
+  var treeStores = cStores(db.tree, []);
+  function qsList(){
+    return db.qsIds.map(function(sid){ if(sid==="pxmart") return PXMART; var found=null; for(var i=0;i<treeStores.length;i++){ if(treeStores[i].id===sid){ found=treeStores[i]; break; } } if(!found) return null; var node=fn(db.tree,found.treePath); if(!node) return null; return buildQS(db.tree,found.treePath,node,db.entries); }).filter(Boolean);
+  }
+  var cart = ui.cart;
+  var cartTotal = cart.reduce(function(s,c){ return s+c.price*c.qty; },0);
+  var cartCount = cart.reduce(function(s,c){ return s+c.qty; },0);
+  var cashNum = Number(ui.cashPaid)||0;
+
+  var h = '<div style="padding:20px 16px 100px" class="fade">';
+  if(!ui.qStore){
+    h += '<div style="font-size:22px;font-weight:800;margin-bottom:20px">⚡ 快速記帳</div><div style="display:flex;flex-direction:column;gap:10px">';
+    qsList().forEach(function(store){
+      var cnt = store.sections.reduce(function(s,sec){ return s+sec.items.length; },0);
+      h += '<div class="card" data-act="openStore" data-arg="'+store.id+'" style="display:flex;align-items:center;gap:16px;padding:20px;cursor:pointer"><div style="width:50px;height:50px;border-radius:14px;background:'+store.color+'18;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">'+store.icon+'</div><div style="flex:1;min-width:0"><div style="font-size:18px;font-weight:700">'+esc(store.label)+'</div><div style="font-size:12px;color:var(--t2);margin-top:2px">'+cnt+' 個品項</div></div>'+(!store.builtIn?'<button data-act="removeStore" data-arg="'+store.id+'" data-stop="1" style="background:none;border:none;font-size:18px;color:#C4C0BA;padding:8px;flex-shrink:0">✕</button>':'')+'<span style="font-size:16px;color:#C4C0BA;flex-shrink:0">›</span></div>';
+    });
+    if(!ui.showPick){
+      h += '<button data-act="showPick" style="background:transparent;border:2px dashed #E8E4DE;border-radius:var(--rd);padding:20px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ac);font-size:15px;font-weight:600">＋ 新增快速商家</button>';
+    } else {
+      var availStores = treeStores.filter(function(s){ return db.qsIds.indexOf(s.id)===-1; });
+      h += '<div class="card" style="border:2px solid var(--ac)40"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:15px;font-weight:700">選擇商家</div><button data-act="hidePick" style="background:none;border:none;font-size:14px;color:var(--t2)">取消</button></div>';
+      if(availStores.length===0){ h += '<div style="text-align:center;color:var(--t2);padding:20px;font-size:13px">所有商家都已加入</div>'; }
+      else { h += '<div style="display:flex;flex-direction:column;gap:2px;max-height:300px;overflow-y:auto">'; availStores.forEach(function(st){ var rc=gr(db.tree,st.treePath[0]); h += '<button data-act="addStore" data-arg="'+st.id+'" style="background:transparent;border:none;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;text-align:left;width:100%"><div style="width:32px;height:32px;border-radius:8px;background:'+(rc?rc.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">'+(rc?rc.icon:"📌")+'</div><div><div style="font-size:14px;font-weight:600">'+esc(st.label)+'</div><div style="font-size:11px;color:var(--t2)">'+esc(bl(db.tree,st.treePath).join(" › "))+'</div></div></button>'; }); h += '</div>'; }
+      h += '</div>';
+    }
+    h += '</div>';
+  } else {
+    var store = ui.qStore;
+    h += '<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><button data-act="closeStore" style="background:none;border:none;font-size:22px;padding:0;line-height:1">←</button><div style="width:36px;height:36px;border-radius:10px;background:'+store.color+'18;display:flex;align-items:center;justify-content:center;font-size:20px">'+store.icon+'</div><div style="font-size:22px;font-weight:800">'+esc(store.label)+'</div></div>';
+    h += '<div class="card" style="margin-bottom:16px"><div style="font-size:13px;color:var(--t2);margin-bottom:10px">誰記帳？</div>'+recorderPicker(db.recorder,'setRecorder')+'</div>';
+    store.sections.forEach(function(sec,si){
+      h += '<div style="margin-bottom:20px"><div style="font-size:14px;font-weight:700;color:var(--t2);margin-bottom:10px">'+esc(sec.label)+'</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">';
+      sec.items.forEach(function(item){
+        var inCart=null; for(var i=0;i<cart.length;i++){ if(cart[i].id===item.id){ inCart=cart[i]; break; } }
+        var lastE = db.entries.filter(function(e){ return pe(e.path,item.path); }).sort(function(a,b){ return b.date>a.date?1:(b.date<a.date?-1:b.id-a.id); })[0];
+        var ePrice = inCart?inCart.price:(lastE?lastE.unitPrice:item.price);
+        h += '<button data-act="addCart" data-arg="'+item.id+'" data-price="'+ePrice+'" style="background:'+(inCart?store.color+'15':'var(--sf)')+';border:2px solid '+(inCart?store.color:'#F0EDE8')+';border-radius:12px;padding:12px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative">'+(inCart?'<div style="position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;background:'+store.color+';color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">'+inCart.qty+'</div>':'')+'<span style="font-size:13px;font-weight:600;color:var(--t1);text-align:center;line-height:1.3">'+esc(item.label)+'</span><span style="font-size:11px;color:'+(inCart?store.color:'var(--t2)')+';font-weight:'+(inCart?'700':'400')+'">'+(ePrice>0?fmt(ePrice):"$?")+'</span></button>';
+      });
+      h += '</div></div>';
+    });
+    if(cart.length>0){
+      h += '<div class="card" style="margin-bottom:16px;border:2px solid '+store.color+'30"><div style="font-size:15px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center"><span>🛒 購物車</span><span style="font-size:13px;color:var(--t2)">'+cartCount+' 項</span></div>';
+      cart.forEach(function(c,i){
+        var rootC=gr(db.tree,c.path[0]); var catLabel=bl(db.tree,c.path); var isEd=ui.editCartIdx===i;
+        h += '<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-top:'+(i>0?'1px solid #F0EDE8':'none')+'"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600">'+esc(c.label)+(c.addVeg?' 🥬':'')+'</div><div style="font-size:11px;color:var(--t2);margin-top:3px;display:flex;align-items:center;flex-wrap:wrap;gap:4px"><span style="background:'+(rootC?rootC.color:"#ccc")+'18;border-radius:3px;padding:1px 4px">'+(rootC?rootC.icon:"📌")+' '+esc(catLabel[0])+'</span>';
+        if(isEd){ h += '<span style="display:flex;align-items:center;gap:4px"><span>$</span><input type="number" data-bind="editCartP" value="'+esc(ui.editCartP)+'" data-cartidx="'+i+'" style="width:60px;border:none;border-bottom:2px solid var(--ac);outline:none;font-size:14px;font-weight:700;background:transparent;color:var(--ac);text-align:center;padding:2px 0"></span>'; }
+        else { h += '<span data-act="editCartPrice" data-arg="'+i+'" style="color:var(--ac);font-weight:600;cursor:pointer;border-bottom:1px dashed var(--ac)80;padding:0 2px">'+fmt(c.price)+'</span>'+(c.qty>1?'<span> × '+c.qty+' = '+fmt(c.price*c.qty)+'</span>':''); }
+        h += '</div></div>'+(c.addVeg!==undefined?'<button data-act="cartVeg" data-arg="'+i+'" style="background:none;border:none;font-size:12px;padding:2px 4px;opacity:'+(c.addVeg?'1':'.4')+'">🥬</button>':'')+'<div style="display:flex;align-items:center;gap:6px">'+stepper('cartMinus',i,'−',false,28)+'<span style="font-size:16px;font-weight:700;min-width:20px;text-align:center">'+c.qty+'</span>'+stepper('cartPlus',i,'+',false,28)+'</div></div>';
+      });
+      h += '<div style="margin-top:14px;padding-top:14px;border-top:2px solid #F0EDE8;display:flex;justify-content:space-between;align-items:center"><span style="font-size:18px;font-weight:800">合計</span><span style="font-size:22px;font-weight:800;color:var(--dg)">'+fmt(cartTotal)+'</span></div></div>';
+      // 付款找零
+      h += '<div class="card" style="margin-bottom:16px;border:1.5px solid #E8E4DE"><div style="font-size:14px;font-weight:700;margin-bottom:12px">💰 付款</div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:14px;color:var(--t2)">付</span><div style="flex:1;display:flex;align-items:center;background:#FAFAF8;border-radius:10px;padding:8px 12px;border:1.5px solid #E8E4DE"><span style="font-size:16px;color:var(--t2);margin-right:4px">$</span><input type="number" data-bind="cashPaid" value="'+esc(ui.cashPaid)+'" placeholder="'+cartTotal+'" style="border:none;outline:none;font-size:18px;font-weight:700;background:transparent;color:var(--t1);width:100%" class="tnum"></div></div>';
+      if(cashNum>0){ var ok=cashNum>=cartTotal; h += '<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-radius:10px;background:'+(ok?'#E8F5E9':'#FFF3E0')+'"><span style="font-size:14px;font-weight:600">'+(ok?'找零':'不足')+'</span><span style="font-size:22px;font-weight:800;color:'+(ok?'#2E7D32':'#E65100')+'" class="tnum">'+(ok?fmt(cashNum-cartTotal):'差 '+fmt(cartTotal-cashNum))+'</span></div>'; }
+      h += '</div>';
+      h += '<button data-act="saveCart" style="background:'+store.color+';color:#fff;border:none;border-radius:12px;padding:16px 0;font-size:17px;font-weight:700;width:100%;box-shadow:0 4px 16px '+store.color+'44">✓ 全部記帳（'+fmt(cartTotal)+'）</button>';
+    }
+  }
+  h += '</div>';
+  return h;
+}
+
+function queryHTML(){
+  var treeStores = cStores(db.tree, []);
+  var allLeaves = cLeaves(db.tree, []);
+  var qEntries = db.entries.filter(function(e){ return e.date>=ui.qFrom && e.date<=ui.qTo; });
+  var qTotal = qEntries.reduce(function(s,e){ return s+e.amount; },0);
+
+  var h = '<div style="padding:20px 16px 100px" class="fade">';
+  h += '<div style="font-size:22px;font-weight:800;margin-bottom:20px">📊 區段查詢</div>';
+  h += '<div class="card" style="margin-bottom:16px"><div style="font-size:13px;color:var(--t2);margin-bottom:10px">查詢區間</div><div style="display:flex;gap:10px;align-items:center"><input type="date" data-bind="qFrom" value="'+esc(ui.qFrom)+'" style="flex:1;border:1.5px solid #E8E4DE;border-radius:10px;padding:10px 12px;font-size:14px;color:var(--t1);background:#FAFAF8;outline:none"><span style="color:var(--t2);font-size:13px">至</span><input type="date" data-bind="qTo" value="'+esc(ui.qTo)+'" style="flex:1;border:1.5px solid #E8E4DE;border-radius:10px;padding:10px 12px;font-size:14px;color:var(--t1);background:#FAFAF8;outline:none"></div><div style="margin-top:12px;text-align:center;font-size:14px;font-weight:700;color:var(--ac)">合計 '+fmt(qTotal)+'（'+qEntries.length+' 筆）</div></div>';
+  h += '<div style="display:flex;margin-bottom:16px;background:#EDEAE5;border-radius:12px;padding:3px">';
+  [{k:"category",l:"類別"},{k:"store",l:"商家"},{k:"item",l:"單品項"},{k:"member",l:"成員"}].forEach(function(mo){ h += '<button data-act="qMode" data-arg="'+mo.k+'" style="flex:1;border:none;border-radius:10px;padding:10px 0;font-size:13px;font-weight:600;background:'+(ui.qMode===mo.k?'var(--sf)':'transparent')+';color:'+(ui.qMode===mo.k?'var(--ac)':'var(--t2)')+';box-shadow:'+(ui.qMode===mo.k?'0 1px 4px rgba(0,0,0,.08)':'none')+'">'+mo.l+'</button>'; });
+  h += '</div>';
+
+  // 單品項下鑽
+  if(ui.qItemDrill){
+    var itemE = qEntries.filter(function(e){ return pe(e.path,ui.qItemDrill); }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+    var itemQty = itemE.reduce(function(s,e){ return s+(e.qty||1); },0);
+    var itemTotal = itemE.reduce(function(s,e){ return s+e.amount; },0);
+    h += '<button data-act="qItemDrillClear" style="background:none;border:none;font-size:14px;color:var(--ac);font-weight:600;margin-bottom:12px;padding:0">← 返回列表</button><div class="card"><div style="margin-bottom:16px"><div style="font-size:16px;font-weight:700;margin-bottom:2px">'+esc(bl(db.tree,ui.qItemDrill).slice(-1)[0]||'')+'</div><div style="font-size:12px;color:var(--t2)">'+esc(bl(db.tree,ui.qItemDrill).join(" › "))+'</div><div style="margin-top:8px;display:flex;gap:16px"><div style="font-size:13px;color:var(--ac);font-weight:700">'+itemQty+' 個</div><div style="font-size:13px;color:var(--t2)">'+itemE.length+' 筆</div><div style="font-size:13px;color:var(--dg);font-weight:700">合計 '+fmt(itemTotal)+'</div></div></div>';
+    itemE.forEach(function(e,i){ h += entryRowHTML(e, i===itemE.length-1); });
+    h += '</div></div>'; return h;
+  }
+
+  // 成員下鑽（單一成員的所有明細）
+  if(ui.qMemberDrill){
+    var r = recById(ui.qMemberDrill);
+    var mEnt = qEntries.filter(function(e){ return (e.recorder||"")===ui.qMemberDrill; }).sort(function(a,b){ return b.date.localeCompare(a.date); });
+    var mTotal = mEnt.reduce(function(s,e){ return s+e.amount; },0);
+    h += '<button data-act="qMemberDrillClear" style="background:none;border:none;font-size:14px;color:var(--ac);font-weight:600;margin-bottom:12px;padding:0">← 返回成員</button><div class="card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><div style="width:36px;height:36px;border-radius:50%;background:'+(r?r.color:"#ccc")+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">'+(r?esc(r.label):"?")+'</div><div><div style="font-size:16px;font-weight:800">'+(r?esc(r.label):"未指定")+'</div><div style="font-size:12px;color:var(--t2)">'+mEnt.length+' 筆 · 合計 '+fmt(mTotal)+'</div></div></div>';
+    mEnt.forEach(function(e,i){ var root=gr(db.tree,e.path[0]); h += '<div data-act="startEdit" data-arg="'+e.id+'" style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:'+(i>0?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="width:34px;height:34px;border-radius:9px;background:'+(root?root.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">'+(root?root.icon:"📌")+'</div><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600">'+esc(e.note)+'</div><div style="font-size:11px;color:var(--t2)">'+esc(bl(db.tree,e.path).join(" › "))+' · '+fds(e.date)+'</div></div><div style="font-size:15px;font-weight:700;color:var(--dg);flex-shrink:0" class="tnum">−'+fmt(e.amount)+'</div></div>'; });
+    if(mEnt.length===0) h += '<div style="text-align:center;color:var(--t2);padding:20px">此區間無紀錄</div>';
+    h += '</div></div>'; return h;
+  }
+
+  // 類別/商家下鑽
+  if(ui.qDrill){
+    var matched = qEntries.filter(function(e){ return psw(e.path,ui.qDrill); });
+    var node = fn(db.tree, ui.qDrill);
+    var dLabel = bl(db.tree, ui.qDrill);
+    var dTotal = matched.reduce(function(s,e){ return s+e.amount; },0);
+    var backLabel = dLabel.length>1 ? dLabel.slice(0,-1).join(" › ") : "返回";
+    h += '<button data-act="qDrillBack" style="background:none;border:none;font-size:14px;color:var(--ac);font-weight:600;margin-bottom:12px;padding:0">← '+esc(backLabel)+'</button><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:15px;font-weight:700">'+esc(dLabel[dLabel.length-1]||'')+'</div><div style="font-size:12px;color:var(--t2)">'+matched.length+' 筆 · '+fmt(dTotal)+'</div></div>';
+    if(node && node.children && node.children.length>0){
+      var gmap={}; matched.forEach(function(e){ var nid=e.path[ui.qDrill.length]; if(!nid) return; if(!gmap[nid]){ var n=null; for(var i=0;i<node.children.length;i++){ if(node.children[i].id===nid){ n=node.children[i]; break; } } gmap[nid]={id:nid,label:n?n.label:nid,count:0,total:0}; } gmap[nid].count++; gmap[nid].total+=e.amount; });
+      var items = Object.keys(gmap).map(function(k){ return gmap[k]; }).sort(function(a,b){ return b.total-a.total; });
+      items.forEach(function(it,i){ h += '<div data-act="qDrillInto" data-arg="'+it.id+'" style="display:flex;align-items:center;padding:13px 0;border-bottom:'+(i<items.length-1?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="flex:1"><div style="font-size:14px;font-weight:600">'+esc(it.label)+'</div></div><div style="text-align:right;flex-shrink:0;margin-right:8px"><div style="font-size:15px;font-weight:700;color:var(--dg)">−'+fmt(it.total)+'</div><div style="font-size:11px;color:var(--t2)">'+it.count+' 筆</div></div><span style="font-size:13px;color:#C4C0BA;flex-shrink:0">›</span></div>'; });
+    } else {
+      matched.sort(function(a,b){ return b.date.localeCompare(a.date); }).forEach(function(e,i){ h += entryRowHTML(e, i===matched.length-1); });
+    }
+    h += '</div></div>'; return h;
+  }
+
+  // 列表（類別/商家/單品項）
+  h += '<div class="card">';
+  if(ui.qMode==="category"){
+    var cmap={}; qEntries.forEach(function(e){ var r=e.path[0]; if(!cmap[r]) cmap[r]={count:0,total:0}; cmap[r].count++; cmap[r].total+=e.amount; });
+    var cData = db.tree.map(function(c){ return m(c,{count:(cmap[c.id]||{}).count||0,total:(cmap[c.id]||{}).total||0}); }).filter(function(c){ return c.count>0; });
+    if(cData.length===0) h += '<div style="text-align:center;color:var(--t2);padding:30px">此區間無紀錄</div>';
+    cData.forEach(function(c,i){ h += '<div data-act="qDrillCat" data-arg="'+c.id+'" style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:'+(i<cData.length-1?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="width:36px;height:36px;border-radius:10px;background:'+c.color+'18;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">'+c.icon+'</div><div style="flex:1"><div style="font-size:14px;font-weight:600">'+esc(c.label)+'</div></div><div style="text-align:right;flex-shrink:0;margin-right:8px"><div style="font-size:15px;font-weight:700;color:var(--dg)">−'+fmt(c.total)+'</div><div style="font-size:11px;color:var(--t2)">'+c.count+' 筆</div></div><span style="font-size:13px;color:#C4C0BA;flex-shrink:0">›</span></div>'; });
+  } else if(ui.qMode==="store"){
+    var smap={}; qEntries.forEach(function(e){ for(var i=0;i<treeStores.length;i++){ var st=treeStores[i]; if(psw(e.path,st.treePath)){ var k=st.treePath.join("/"); if(!smap[k]) smap[k]=m(st,{count:0,total:0}); smap[k].count++; smap[k].total+=e.amount; break; } } });
+    var sData = Object.keys(smap).map(function(k){ return smap[k]; }).sort(function(a,b){ return b.total-a.total; });
+    if(sData.length===0) h += '<div style="text-align:center;color:var(--t2);padding:30px">此區間無商家紀錄</div>';
+    sData.forEach(function(st,i){ var rc=gr(db.tree,st.treePath[0]); h += '<div data-act="qDrillStore" data-arg="'+st.treePath.join(",")+'" style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:'+(i<sData.length-1?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="width:36px;height:36px;border-radius:10px;background:'+(rc?rc.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">'+(rc?rc.icon:"📌")+'</div><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600">'+esc(st.label)+'</div><div style="font-size:11px;color:var(--t2);margin-top:1px">'+esc(bl(db.tree,st.treePath.slice(0,-1)).join(" › "))+'</div></div><div style="text-align:right;flex-shrink:0;margin-right:8px"><div style="font-size:15px;font-weight:700;color:var(--dg)">−'+fmt(st.total)+'</div><div style="font-size:11px;color:var(--t2)">'+st.count+' 筆</div></div><span style="font-size:13px;color:#C4C0BA;flex-shrink:0">›</span></div>'; });
+  } else if(ui.qMode==="item"){
+    var imap={}; qEntries.forEach(function(e){ var k=e.path.join("/"); var leaf=null; for(var i=0;i<allLeaves.length;i++){ if(allLeaves[i].treePath.join("/")===k){ leaf=allLeaves[i]; break; } } var label=leaf?leaf.label:(bl(db.tree,e.path).slice(-1)[0]||''); var fl=bl(db.tree,e.path); if(!imap[k]) imap[k]={key:k,label:label,fullLabel:fl,path:e.path,count:0,totalQty:0,total:0}; imap[k].count++; imap[k].totalQty+=(e.qty||1); imap[k].total+=e.amount; });
+    var iData = Object.keys(imap).map(function(k){ return imap[k]; }).sort(function(a,b){ return b.total-a.total; });
+    if(iData.length===0) h += '<div style="text-align:center;color:var(--t2);padding:30px">此區間無紀錄</div>';
+    iData.forEach(function(it,i){ var rc=gr(db.tree,it.path[0]); h += '<div data-act="qItemDrill" data-arg="'+it.path.join(",")+'" style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:'+(i<iData.length-1?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="width:36px;height:36px;border-radius:10px;background:'+(rc?rc.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">'+(rc?rc.icon:"📌")+'</div><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600">'+esc(it.label)+'</div><div style="font-size:11px;color:var(--t2);margin-top:1px">'+esc(it.fullLabel.join(" › "))+'</div></div><div style="text-align:right;flex-shrink:0;margin-right:8px"><div style="font-size:15px;font-weight:700;color:var(--dg)">−'+fmt(it.total)+'</div><div style="font-size:12px;color:var(--ac);font-weight:600">'+it.totalQty+' 個 / '+it.count+' 筆</div></div><span style="font-size:13px;color:#C4C0BA;flex-shrink:0">›</span></div>'; });
+  } else {
+    // 成員模式
+    var pmap={}; RECORDERS.forEach(function(r){ pmap[r.id]={id:r.id,label:r.label,color:r.color,count:0,total:0}; });
+    var unassigned={id:"",label:"未指定",color:"#8E8E93",count:0,total:0};
+    qEntries.forEach(function(e){ var rid=e.recorder||""; if(pmap[rid]){ pmap[rid].count++; pmap[rid].total+=e.amount; } else { unassigned.count++; unassigned.total+=e.amount; } });
+    var pData = RECORDERS.map(function(r){ return pmap[r.id]; });
+    if(unassigned.count>0) pData.push(unassigned);
+    pData = pData.filter(function(p){ return p.count>0; }).sort(function(a,b){ return b.total-a.total; });
+    var grand = pData.reduce(function(s,p){ return s+p.total; },0);
+    if(pData.length===0){ h += '<div style="text-align:center;color:var(--t2);padding:30px">此區間無紀錄</div>'; }
+    else {
+      pData.forEach(function(p,i){ var pct = grand>0?Math.round(p.total/grand*100):0; h += '<div data-act="qMemberDrill" data-arg="'+p.id+'" style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:'+(i<pData.length-1?'1px solid #F0EDE8':'none')+';cursor:pointer"><div style="width:40px;height:40px;border-radius:50%;background:'+p.color+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0">'+esc(p.label)+'</div><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600">'+esc(p.label)+'</div><div style="height:6px;background:#F0EDE8;border-radius:3px;margin-top:6px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+p.color+';border-radius:3px"></div></div></div><div style="text-align:right;flex-shrink:0;margin-right:8px"><div style="font-size:15px;font-weight:700;color:var(--dg)">−'+fmt(p.total)+'</div><div style="font-size:11px;color:var(--t2)">'+p.count+' 筆 · '+pct+'%</div></div><span style="font-size:13px;color:#C4C0BA;flex-shrink:0">›</span></div>'; });
+    }
+  }
+  h += '</div></div>';
+  return h;
+}
+
+function syncBarHTML(){
+  if(!db.sync.enabled) return '';
+  var dot='#9d8bb8', text='雲端同步 · 未連線';
+  if(sync.state==='on'){ dot='#5fbf7f'; text=sync.pending?'待補傳':'已連線'; }
+  else if(sync.state==='connecting'){ dot='#f0b429'; text='連線中…'; }
+  else if(sync.state==='error'){ dot='#E06B6B'; text='同步錯誤'; }
+  return '<div style="position:sticky;top:0;z-index:10;display:flex;justify-content:center;align-items:center;gap:6px;padding:6px;font-size:11px;letter-spacing:.05em;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);border-bottom:1px solid #E8E4DE;color:var(--t2)"><span style="width:7px;height:7px;border-radius:50%;background:'+dot+'"></span><span>'+text+'</span></div>';
+}
+
+function settingsHTML(){
+  var h = '<div style="padding:20px 16px 100px" class="fade">';
+  h += '<div style="font-size:22px;font-weight:800;margin-bottom:20px">⚙️ 設定</div>';
+
+  // 雲端同步
+  if(!db.sync.passphrase){
+    h += '<div class="card" style="margin-bottom:12px"><div style="font-size:16px;font-weight:700;margin-bottom:12px">☁️ 雲端同步</div><div style="font-size:13px;color:var(--t2);line-height:1.8;margin-bottom:16px">設定通關密語，帳目會加密成亂碼後才上雲。<br><b style="color:var(--ac)">三支手機設一模一樣的密語</b>，就能共用同一本帳。</div><button data-act="phraseSet" style="width:100%;border:1.5px solid var(--ac);background:var(--al);color:var(--ac);font-weight:600;border-radius:12px;padding:12px">設定通關密語並開啟同步</button></div>';
+  } else {
+    var st = sync.state==='on' ? (sync.pending?'待補傳':'即時同步中') : (sync.state==='connecting'?'連線中…':(sync.state==='error'?'發生錯誤':'未連線'));
+    var dotC = sync.state==='on'?'#5fbf7f':(sync.state==='connecting'?'#f0b429':(sync.state==='error'?'#E06B6B':'#9d8bb8'));
+    h += '<div class="card" style="margin-bottom:12px"><div style="font-size:16px;font-weight:700;margin-bottom:12px">☁️ 雲端同步</div><div style="display:flex;align-items:center;gap:8px;margin-bottom:16px"><span style="width:9px;height:9px;border-radius:50%;background:'+dotC+'"></span><span style="font-size:14px">'+st+'</span></div><div style="display:flex;gap:10px;margin-bottom:12px"><button data-act="phraseSet" style="flex:1;border:1.5px solid #E8E4DE;background:var(--sf);color:var(--t2);font-weight:600;border-radius:12px;padding:10px">更改密語</button><button data-act="syncOff" style="flex:1;border:1.5px solid #E8E4DE;background:var(--sf);color:var(--t2);font-weight:600;border-radius:12px;padding:10px">關閉同步</button></div><button data-act="syncPushAll" style="width:100%;border:1.5px solid #E8E4DE;background:var(--sf);color:var(--t2);font-weight:600;border-radius:12px;padding:10px;margin-bottom:12px">重新上傳本機資料</button><div style="font-size:12px;color:var(--t2)">三支手機設同組密語，自動同步新增/修改的帳目。</div></div>';
+  }
+
+  // 記帳者說明
+  h += '<div class="card" style="margin-bottom:12px"><div style="font-size:16px;font-weight:700;margin-bottom:12px">👥 記帳者</div><div style="display:flex;gap:8px">'+RECORDERS.map(function(r){ return '<div style="flex:1;text-align:center;padding:12px 0;border-radius:12px;background:'+r.color+'14"><div style="width:34px;height:34px;border-radius:50%;background:'+r.color+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;margin:0 auto 6px">'+esc(r.label)+'</div><div style="font-size:12px;color:var(--t2)">'+esc(r.label)+'</div></div>'; }).join('')+'</div></div>';
+
+  h += '<div style="text-align:center;padding:24px 0;color:var(--t2);font-size:12px">v2.0 · 雲端同步版</div>';
+  h += '</div>';
+  return h;
+}
+
+function phraseModalHTML(){
+  var mm = ui.phraseModal;
+  return '<div style="position:fixed;inset:0;z-index:70;background:rgba(10,5,25,.5);display:flex;align-items:center;justify-content:center;padding:28px"><div class="card" style="width:100%;max-width:400px;padding:24px"><div style="font-size:18px;font-weight:700;margin-bottom:8px">通關密語</div><div style="font-size:13px;color:var(--t2);margin-bottom:16px;line-height:1.6">三支手機要設「完全一樣」的密語才能互相解密。<br><b style="color:var(--ac)">忘記密語 = 雲端資料解不開</b>，請記牢。</div><input type="text" id="phraseInput" value="'+esc(mm.value)+'" placeholder="輸入通關密語……" style="width:100%;border:1.5px solid #E8E4DE;border-radius:12px;padding:12px 16px;font-size:16px;background:#FAFAF8;color:var(--t1);outline:none;margin-bottom:12px">'+(mm.error?'<div style="color:var(--dg);font-size:12px;margin-bottom:12px">'+esc(mm.error)+'</div>':'')+'<div style="display:flex;gap:8px"><button data-act="phraseCancel" style="flex:1;border:1.5px solid #E8E4DE;background:var(--sf);color:var(--t2);font-weight:600;border-radius:12px;padding:12px">取消</button><button data-act="phraseSave" style="flex:1;border:none;background:var(--ac);color:#fff;font-weight:600;border-radius:12px;padding:12px">儲存並同步</button></div></div></div>';
+}
+
+function navHTML(){
+  var tabs = [{k:"home",i:"🏠",l:"總覽"},{k:"add",i:"➕",l:"記帳"},{k:"quick",i:"⚡",l:"快速"},{k:"query",i:"🔍",l:"查詢"},{k:"list",i:"📋",l:"明細"},{k:"settings",i:"⚙️",l:"設定"}];
+  var h = '<div class="nav">';
+  tabs.forEach(function(t){ var on=ui.view===t.k; var act = t.k==="add"?'goAdd':'tab'; h += '<button data-act="'+act+'" data-arg="'+t.k+'" class="navb" style="opacity:'+(on?1:.45)+'"><span style="font-size:'+(t.k==="quick"?22:20)+'px">'+t.i+'</span><span style="font-size:10px;font-weight:'+(on?700:500)+';color:'+(on?'var(--ac)':'var(--t2)')+'">'+t.l+'</span></button>'; });
+  h += '</div>';
+  return h;
+}
+
+function render(){
+  var y = window.scrollY;
+  var h = '';
+  if(ui.toast) h += '<div class="toast">'+esc(ui.toast)+'</div>';
+  h += syncBarHTML();
+  if(ui.view==="home") h += homeHTML();
+  else if(ui.view==="add") h += addHTML();
+  else if(ui.view==="edit") h += editHTML();
+  else if(ui.view==="list") h += listHTML();
+  else if(ui.view==="quick") h += quickHTML();
+  else if(ui.view==="query") h += queryHTML();
+  else if(ui.view==="settings") h += settingsHTML();
+  h += navHTML();
+  if(ui.phraseModal) h += phraseModalHTML();
+  app.innerHTML = h;
+  window.scrollTo(0,y);
+}
+
+/* ═══════════ 事件 ═══════════ */
+function resetAdd(){ ui.navPath=[]; ui.selItem=null; ui.addVeg=false; ui.amt=""; ui.qty=1; ui.note=""; ui.recip=""; ui.showNew=false; ui.newName=""; }
+
+function drillInto(cid){
+  var np = ui.navPath.concat([cid]);
+  var node = fn(db.tree, np);
+  if(node && node.children && node.children.length>0){ ui.navPath=np; ui.showNew=false; }
+  else { ui.navPath=np; ui.selItem=node; ui.amt=getLP(np); ui.qty=1; ui.showNew=false; }
+}
+function addBack(){
+  ui.showNew=false; ui.newName="";
+  if(ui.selItem){ var node=fn(db.tree,ui.navPath); ui.selItem=null; ui.addVeg=false; ui.amt=""; ui.qty=1; ui.note=""; ui.recip=""; if(node&&(!node.children||node.children.length===0)) ui.navPath=ui.navPath.slice(0,-1); }
+  else if(ui.navPath.length>0){ ui.navPath=ui.navPath.slice(0,-1); }
+  else { ui.view="home"; }
+}
+
+app.addEventListener('click', function(ev){
+  var el = ev.target.closest('[data-act]'); if(!el) return;
+  var act = el.dataset.act, arg = el.dataset.arg;
+  switch(act){
+    case 'tab': ui.view=arg; render(); break;
+    case 'goAdd': resetAdd(); ui.view="add"; render(); break;
+    case 'setRecorder': db.recorder=arg; saveDB(); render(); break;
+    case 'editSetRecorder': ui.editRecorder=arg; render(); break;
+    case 'listFilterToggle': { var idx=ui.listFilter.indexOf(arg); if(idx===-1) ui.listFilter=ui.listFilter.concat([arg]); else ui.listFilter=ui.listFilter.filter(function(x){ return x!==arg; }); render(); break; }
+    case 'listFilterClear': ui.listFilter=[]; render(); break;
+
+    // 雲端同步
+    case 'phraseSet': ui.phraseModal={value:db.sync.passphrase||'',error:''}; render(); break;
+    case 'phraseCancel': ui.phraseModal=null; render(); break;
+    case 'phraseSave': {
+      var inp=document.getElementById('phraseInput'); var v=(inp&&inp.value||'').trim();
+      if(v.length<4){ ui.phraseModal.error='密語至少 4 個字'; render(); break; }
+      db.sync.passphrase=v; cryptoKey=null; cryptoKeyPhrase=null; saveDB(); ui.phraseModal=null; render(); enableSync(); break;
+    }
+    case 'syncOff': db.sync.enabled=false; saveDB(); stopSync(); render(); break;
+    case 'syncPushAll': { if(sync.state!=='on'&&sync.state!=='connecting') enableSync(); pushAll().then(function(){ showToast('已重新上傳'); }); break; }
+
+    // home drill
+    case 'homeDrill': ui.homeDrill=arg; ui.homeDrillMonth=null; render(); break;
+    case 'homeDrillClear': ui.homeDrill=null; render(); break;
+    case 'homeDrillMonth': ui.homeDrillMonth=parseInt(arg,10); render(); break;
+    case 'homeDrillMonthClear': ui.homeDrillMonth=null; render(); break;
+
+    // add flow
+    case 'addBack': addBack(); render(); break;
+    case 'topCat': { var cat=gr(db.tree,arg); if(cat.children&&cat.children.length===0){ ui.navPath=[cat.id]; ui.selItem=cat; ui.amt=getLP([cat.id]); ui.qty=1; } else { drillInto(cat.id); } render(); break; }
+    case 'drill': drillInto(arg); render(); break;
+    case 'showNew': ui.showNew=true; render(); break;
+    case 'newType': ui.newType=arg; render(); break;
+    case 'newCancel': ui.showNew=false; ui.newName=""; render(); break;
+    case 'newConfirm': {
+      var name=(ui.newName||'').trim();
+      var curNode = ui.navPath.length>0?fn(db.tree,ui.navPath):null;
+      var curChildren = ui.navPath.length===0?db.tree:(curNode?(curNode.children||[]):[]);
+      if(!name){ showToast("請輸入名稱"); break; }
+      if(curChildren.some(function(c){ return c.label===name; })){ showToast("此名稱已存在"); break; }
+      var nn={id:"custom_"+Date.now(),label:name,createdAt:TODAY};
+      if(ui.newType==="store") nn.isStore=true;
+      db.tree = addNode(db.tree, ui.navPath, nn); saveDB();
+      ui.newName=""; ui.showNew=false; showToast("已新增「"+name+"」"); render(); break;
+    }
+    case 'toggleVeg': ui.addVeg=!ui.addVeg; render(); break;
+    case 'qtyMinus': ui.qty=Math.max(1,ui.qty-1); render(); break;
+    case 'qtyPlus': ui.qty=ui.qty+1; render(); break;
+    case 'saveAdd': {
+      var uP=Number(ui.amt)||0;
+      if(!ui.amt||isNaN(Number(ui.amt))||uP<=0){ showToast("請輸入有效金額"); break; }
+      var labels=bl(db.tree,ui.navPath);
+      var fNote=ui.note||labels[labels.length-1];
+      if(ui.addVeg) fNote+="（加菜）";
+      if(ui.qty>1) fNote+=" ×"+ui.qty;
+      if(ui.recip) fNote+="（"+ui.recip+"）";
+      var entry={id:Date.now(),path:ui.navPath.slice(),unitPrice:uP,qty:ui.qty,amount:uP*ui.qty,note:fNote,addVeg:ui.addVeg,recipient:ui.recip||undefined,recorder:db.recorder,date:new Date().toISOString().slice(0,10),updatedAt:Date.now()};
+      db.entries.unshift(entry); saveDB(); pushEntry(entry);
+      showToast("已新增！"); resetAdd(); ui.view="home"; render(); break;
+    }
+
+    // edit
+    case 'startEdit': { var e=null; for(var i=0;i<db.entries.length;i++){ if(String(db.entries[i].id)===arg){ e=db.entries[i]; break; } } if(!e) break; ui.editEntry=JSON.parse(JSON.stringify(e)); ui.editAmt=String(e.unitPrice); ui.editQty=e.qty||1; ui.editNote=e.note; ui.editDate=e.date; ui.editRecorder=recById(e.recorder)?e.recorder:"wei"; ui.view="edit"; render(); break; }
+    case 'editClose': ui.editEntry=null; ui.view="home"; render(); break;
+    case 'editQtyMinus': ui.editQty=Math.max(1,ui.editQty-1); render(); break;
+    case 'editQtyPlus': ui.editQty=ui.editQty+1; render(); break;
+    case 'editSaveBtn': {
+      var p=Number(ui.editAmt);
+      if(!p||p<=0){ showToast("請輸入有效金額"); break; }
+      var newAt = Date.now();
+      var updated=null;
+      db.entries = db.entries.map(function(x){ if(x.id===ui.editEntry.id){ updated=m(x,{unitPrice:p,qty:ui.editQty,amount:p*ui.editQty,note:ui.editNote,date:ui.editDate,recorder:ui.editRecorder,updatedAt:newAt}); return updated; } return x; }); saveDB();
+      if(updated) pushEntry(updated);
+      showToast("已更新！"); ui.editEntry=null; ui.view="home"; render(); break;
+    }
+    case 'editDelete': { var delId=ui.editEntry.id; db.entries=db.entries.filter(function(x){ return x.id!==delId; }); saveDB(); pushDelete(delId); showToast("已刪除"); ui.editEntry=null; ui.view="home"; render(); break; }
+
+    // quick / cart
+    case 'openStore': { var treeStores=cStores(db.tree,[]); var store; if(arg==="pxmart") store=PXMART; else { var found=null; for(var i=0;i<treeStores.length;i++){ if(treeStores[i].id===arg){ found=treeStores[i]; break; } } var node=found?fn(db.tree,found.treePath):null; store=(found&&node)?buildQS(db.tree,found.treePath,node,db.entries):null; } if(store){ ui.qStore=store; ui.cart=[]; ui.cashPaid=""; } render(); break; }
+    case 'closeStore': { if(ui.cart.length>0 && !confirm("購物車尚有品項，確定離開？")) break; ui.qStore=null; ui.cart=[]; ui.cashPaid=""; render(); break; }
+    case 'removeStore': { db.qsIds=db.qsIds.filter(function(id){ return id!==arg; }); saveDB(); showToast("已移除"); render(); break; }
+    case 'showPick': ui.showPick=true; render(); break;
+    case 'hidePick': ui.showPick=false; render(); break;
+    case 'addStore': { db.qsIds=db.qsIds.concat([arg]); saveDB(); ui.showPick=false; showToast("已新增"); render(); break; }
+    case 'addCart': {
+      var price=Number(el.dataset.price)||0;
+      var idx=-1; for(var i=0;i<ui.cart.length;i++){ if(ui.cart[i].id===arg){ idx=i; break; } }
+      if(idx>=0){ ui.cart[idx].qty++; }
+      else {
+        // find item def from current store
+        var itemDef=null;
+        ui.qStore.sections.forEach(function(sec){ sec.items.forEach(function(it){ if(it.id===arg) itemDef=it; }); });
+        if(itemDef){ ui.cart.push(m(itemDef,{price:price,qty:1})); }
+      }
+      render(); break;
+    }
+    case 'cartMinus': { var i2=parseInt(arg,10); ui.cart[i2].qty=Math.max(0,ui.cart[i2].qty-1); ui.cart=ui.cart.filter(function(c){ return c.qty>0; }); render(); break; }
+    case 'cartPlus': { var i3=parseInt(arg,10); ui.cart[i3].qty++; render(); break; }
+    case 'cartVeg': { var i4=parseInt(arg,10); ui.cart[i4].addVeg=!ui.cart[i4].addVeg; render(); break; }
+    case 'editCartPrice': { ui.editCartIdx=parseInt(arg,10); ui.editCartP=String(ui.cart[ui.editCartIdx].price); render(); break; }
+    case 'saveCart': {
+      if(ui.cart.length===0){ showToast("購物車是空的"); break; }
+      var now=new Date().toISOString().slice(0,10);
+      var total=ui.cart.reduce(function(s,c){ return s+c.price*c.qty; },0);
+      var count=ui.cart.reduce(function(s,c){ return s+c.qty; },0);
+      var ne=ui.cart.map(function(c,i){ var n=c.label; if(c.addVeg) n+="（加菜）"; if(c.qty>1) n+=" ×"+c.qty; return {id:Date.now()+i,path:c.path,unitPrice:c.price,qty:c.qty,amount:c.price*c.qty,note:n,addVeg:c.addVeg||false,recorder:db.recorder,date:now,updatedAt:Date.now()+i}; });
+      db.entries = ne.reverse().concat(db.entries); saveDB();
+      ne.forEach(function(x){ pushEntry(x); });
+      showToast("已記帳 "+count+" 項，共 "+fmt(total));
+      ui.cart=[]; ui.qStore=null; ui.cashPaid=""; ui.view="home"; render(); break;
+    }
+
+    // query
+    case 'qMode': ui.qMode=arg; ui.qDrill=null; ui.qItemDrill=null; ui.qMemberDrill=null; render(); break;
+    case 'qMemberDrill': ui.qMemberDrill=arg; render(); break;
+    case 'qMemberDrillClear': ui.qMemberDrill=null; render(); break;
+    case 'qDrillCat': ui.qDrill=[arg]; render(); break;
+    case 'qDrillStore': ui.qDrill=arg.split(","); render(); break;
+    case 'qDrillInto': ui.qDrill=ui.qDrill.concat([arg]); render(); break;
+    case 'qDrillBack': { if(ui.qDrill.length<=1) ui.qDrill=null; else ui.qDrill=ui.qDrill.slice(0,-1); render(); break; }
+    case 'qItemDrill': ui.qItemDrill=arg.split(","); render(); break;
+    case 'qItemDrillClear': ui.qItemDrill=null; render(); break;
+  }
+});
+
+app.addEventListener('input', function(ev){
+  var b = ev.target.dataset && ev.target.dataset.bind; if(!b) return;
+  var v = ev.target.value;
+  if(b==="amt") ui.amt=v;
+  else if(b==="note") ui.note=v;
+  else if(b==="recip") ui.recip=v;
+  else if(b==="newName") ui.newName=v;
+  else if(b==="editAmt") ui.editAmt=v;
+  else if(b==="editNote") ui.editNote=v;
+  else if(b==="editDate") ui.editDate=v;
+  else if(b==="cashPaid") ui.cashPaid=v;
+  else if(b==="editCartP") ui.editCartP=v;
+  else if(b==="qFrom"){ ui.qFrom=v; ui.qDrill=null; ui.qItemDrill=null; ui.qMemberDrill=null; render(); }
+  else if(b==="qTo"){ ui.qTo=v; ui.qDrill=null; ui.qItemDrill=null; ui.qMemberDrill=null; render(); }
+});
+
+// commit cart price edit on blur / enter
+app.addEventListener('blur', function(ev){
+  var b = ev.target.dataset && ev.target.dataset.bind;
+  if(b==="editCartP"){
+    var idx = parseInt(ev.target.dataset.cartidx,10);
+    var p = Number(ui.editCartP);
+    if(p>0 && ui.cart[idx]) ui.cart[idx].price=p;
+    ui.editCartIdx=null; render();
+  }
+}, true);
+app.addEventListener('keydown', function(ev){
+  if(ev.key==="Enter" && ev.target.dataset && ev.target.dataset.bind==="editCartP"){ ev.target.blur(); }
+});
+
+/* ═══════════ 啟動 ═══════════ */
+loadDB();
+// 執行一次自動清理（100 天未使用的自訂/系統項目）
+db.tree = cleanT(db.tree, db.entries, TODAY); saveDB();
+render();
+if(db.sync.enabled && db.sync.passphrase && fbConfigValid()){
+  var tryStart = function(n){ if(typeof firebase!=='undefined'){ if(initFirebase()) startListening(); } else if(n<40) setTimeout(function(){ tryStart(n+1); },100); }; tryStart(0);
+}
+window.addEventListener('online', function(){ if(db.sync.enabled && sync.pending) pushAll(); if(db.sync.enabled && sync.state==='error') startListening(); });
+</script>
+</body>
+</html>

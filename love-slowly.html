@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Slowly">
+<meta name="theme-color" content="#fff5f7">
+<title>為愛慢一次</title>
+<link rel="apple-touch-icon" href="https://placehold.co/512x512/e85a78/ffffff.png?text=Slowly&font=Montserrat">
+
+<style>
+:root{
+  --paper:#fff5f7; --paper-deep:#ffe4ec; --ink:#5a3340; --ink-soft:#9a7080;
+  --tea:#e85a78; --tea-deep:#c4385a; --jade:#f8a5b8; --rose:#ff7a9c;
+  --border:#ffd1dc; --card:#ffffff; --bow:#ff4d6d; --cream:#fff9d6;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{height:100%}
+body{min-height:100%;background:var(--paper);color:var(--ink);
+  font-family:'Noto Sans TC','PingFang TC','Hiragino Sans',sans-serif;
+  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.5;overscroll-behavior-y:none}
+button{font-family:inherit;background:none;border:none;color:inherit;cursor:pointer;font-size:inherit}
+input,textarea{font-family:inherit;color:var(--ink);outline:none}
+input:focus,textarea:focus{border-color:var(--rose)!important}
+#app{max-width:520px;margin:0 auto;min-height:100vh;position:relative}
+.header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px dashed var(--border);padding:12px 20px 10px}
+.header .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.slogan{color:var(--tea);font-size:13px;letter-spacing:.05em;font-weight:600}
+.brand{color:var(--ink-soft);font-size:9px;letter-spacing:.3em;margin-top:4px;font-weight:600}
+.warnbar{background:var(--cream);color:#8a6d1a;font-size:12px;line-height:1.7;padding:8px 16px;text-align:center;border-bottom:1px solid #f0e2a0}
+.page{padding:24px 20px 116px}
+.card{background:var(--card);border:2px solid var(--border);border-radius:24px;padding:20px;margin-bottom:16px;box-shadow:0 4px 12px rgba(255,122,156,.12);transition:box-shadow .4s,border-color .4s}
+.card.hl{border-color:var(--bow);box-shadow:0 0 0 4px var(--paper-deep),0 4px 12px rgba(255,122,156,.25)}
+.label{color:var(--ink-soft);font-size:13px;letter-spacing:.15em;margin-bottom:8px}
+.pillrow{display:flex;flex-wrap:wrap;gap:8px}
+.pill{padding:8px 16px;border-radius:999px;border:2px solid var(--border);background:var(--card);color:var(--ink-soft);font-size:14px;letter-spacing:.05em;font-weight:500;transition:all .15s}
+.pill.on{background:var(--bow);border-color:var(--bow);color:#fff;font-weight:700;box-shadow:0 2px 0 var(--tea-deep)}
+.pill.on.tea{background:var(--tea);border-color:var(--tea);box-shadow:0 2px 0 var(--tea-deep)}
+.smallpill{padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:var(--card);color:var(--ink-soft);font-size:12px;letter-spacing:.1em}
+.smallpill.on{background:var(--paper-deep);border-color:var(--rose);color:var(--tea-deep);font-weight:700}
+.tagchip{display:inline-block;background:var(--paper-deep);color:var(--tea-deep);font-size:12px;padding:2px 9px;border-radius:999px;letter-spacing:.05em;margin:2px 3px 2px 0}
+.bigbtn{width:100%;padding:16px;border-radius:24px;background:var(--bow);color:#fff;font-size:16px;letter-spacing:.3em;font-weight:700;box-shadow:0 4px 0 var(--tea-deep);display:flex;align-items:center;justify-content:center;gap:12px;transition:transform .1s}
+.bigbtn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--tea-deep)}
+.ghostbtn{width:100%;padding:13px;border-radius:24px;background:transparent;color:var(--tea);border:1px dashed var(--tea);font-size:15px;letter-spacing:.2em}
+.field input[type=date],.field input[type=text],.field textarea{width:100%;padding:10px 12px;border-radius:16px;border:1px solid var(--border);background:var(--card);font-size:15px;-webkit-appearance:none;appearance:none}
+.field textarea{resize:none;line-height:1.7;font-size:14px}
+input[type=range]{width:100%;accent-color:var(--tea);height:28px}
+input[type=range].jade{accent-color:var(--jade)}
+.scorebox{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
+.hintline{color:var(--rose);font-size:12px;letter-spacing:.15em;margin-top:12px}
+.dim{color:var(--ink-soft)}
+.divline{width:1px;height:34px;background:var(--border)}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;background:var(--paper);border-top:1px solid var(--border);max-width:520px;margin:0 auto;padding-bottom:env(safe-area-inset-bottom)}
+.tab{flex:1;padding:10px 0 12px;color:var(--ink-soft);font-size:14px;letter-spacing:.1em;border-top:3px solid transparent;font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px}
+.tab.on{color:var(--bow);border-top-color:var(--bow);background:var(--paper-deep);font-weight:700}
+.sheet{position:fixed;inset:0;z-index:50;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sheet-in{max-width:520px;margin:0 auto;padding:24px 20px 130px}
+.sheethead{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.sheethead .title{font-size:17px;letter-spacing:.3em;font-weight:500}
+.sheethead button{font-size:15px;letter-spacing:.15em}
+.fieldblock{margin-bottom:20px}
+.lock{position:fixed;inset:0;z-index:60;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px}
+.pindots{display:flex;gap:12px;margin-bottom:8px}
+.pindot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);transition:all .15s}
+.pindot.fill{background:var(--bow);border-color:var(--bow)}
+.pinerr{color:var(--rose);font-size:12px;letter-spacing:.1em;height:16px;margin-bottom:24px}
+.pad{display:grid;grid-template-columns:repeat(3,64px);gap:12px;justify-content:center}
+.pad button{width:64px;height:64px;border-radius:50%;background:var(--card);border:2px solid var(--border);font-size:22px;font-weight:500}
+.pad button.blank{background:transparent;border:none}
+.pad button.del{background:transparent;border:none;color:var(--ink-soft);font-size:20px}
+.calnav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.calnav .mon{font-size:17px;letter-spacing:.15em;font-weight:500}
+.calnav button{width:36px;height:36px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--tea);font-size:16px}
+.calnav .tdy{width:auto;padding:0 14px;border-radius:999px;font-size:12px;letter-spacing:.1em;height:30px}
+.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.caldow{text-align:center;font-size:11px;color:var(--ink-soft);letter-spacing:.1em;padding:4px 0 8px}
+.calcell{min-height:52px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:5px;position:relative;font-size:13px;color:var(--ink);border:2px solid transparent}
+.calcell.out{color:transparent}
+.calcell.has{background:var(--paper-deep)}
+.calcell.today{border-color:var(--rose)}
+.calcell.pred{border:2px dashed var(--tea)}
+.calcell .marks{display:flex;align-items:center;gap:1px;margin-top:2px;min-height:18px}
+.callegend{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;color:var(--ink-soft);font-size:11px;letter-spacing:.1em}
+.callegend span{display:inline-flex;align-items:center;gap:4px}
+.setrow{display:flex;gap:10px}
+.setbtn{flex:1;padding:11px;border-radius:16px;background:var(--paper-deep);color:var(--tea-deep);font-size:14px;letter-spacing:.1em}
+.setbtn.line{background:transparent;border:1px solid var(--border);color:var(--ink-soft)}
+.setnote{color:var(--ink-soft);font-size:12px;line-height:1.8;letter-spacing:.05em}
+@keyframes lovefall{0%{transform:translateY(-20vh) rotate(0deg);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes loveBloom{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}25%{transform:translate(-50%,-50%) scale(1.15);opacity:1}40%{transform:translate(-50%,-50%) scale(1);opacity:1}80%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+.cel{position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden}
+.cel .bloom{position:fixed;top:45%;left:50%;color:var(--bow);font-size:72px;font-weight:700;letter-spacing:.1em;white-space:nowrap;text-shadow:0 4px 24px rgba(255,122,156,.6),0 0 60px rgba(255,209,220,.8);animation:loveBloom 4s ease-out forwards}
+@media (prefers-reduced-motion:reduce){.cel .fall{display:none}.cel .bloom{animation:none;opacity:1}}
+.syncbar{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 16px;font-size:11px;letter-spacing:.1em;background:var(--paper-deep);color:var(--tea-deep);border-bottom:1px solid var(--border)}
+.syncdot{width:7px;height:7px;border-radius:50%;background:var(--jade);flex:none}
+.syncdot.on{background:#5fbf7f}
+.syncdot.off{background:var(--ink-soft)}
+.syncdot.err{background:var(--bow)}
+.syncdot.sync{background:#f0b429;animation:pulse 1s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.modal{position:fixed;inset:0;z-index:70;background:rgba(90,51,64,.4);display:flex;align-items:center;justify-content:center;padding:28px}
+.modal-in{background:var(--paper);border-radius:24px;padding:24px;max-width:400px;width:100%;box-shadow:0 12px 40px rgba(90,51,64,.3);max-height:85vh;overflow-y:auto}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<input type="file" id="impfile" accept=".json,application/json" style="display:none">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+/* ============================================================
+   Firebase 設定 —— 金鑰已完美整合
+   ============================================================ */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBLk7Ngcd1fY936G-IarJRiyPUceBC1wwY",
+  authDomain: "love-slowly.firebaseapp.com",
+  projectId: "love-slowly",
+  storageBucket: "love-slowly.firebasestorage.app",
+  messagingSenderId: "271372615334",
+  appId: "1:271372615334:web:c26410744a0008c6c1fe67"
+};
+</script>
+
+<script>
+const KEY = 'love-slowly-app-data';
+const ENERGY_TAGS = [
+  { id:'salty',   label:'太鹹' }, { id:'bitter',  label:'苦' }, { id:'sour',    label:'酸' }, { id:'pungent', label:'辛' },
+  { id:'healthy', label:'健康' }, { id:'fresh',   label:'清新' }, { id:'turbid',  label:'混濁' }, { id:'rich',    label:'濃郁' },
+  { id:'like',    label:'❤️ 喜歡' }, { id:'dislike', label:'❗️ 不喜歡' }, { id:'other',   label:'其它（輸入）' },
+];
+const WEATHER_OPTIONS = ['☀️ 晴','⛅ 多雲','☁️ 陰','🌧 雨'];
+const C = { bow:'#ff4d6d', tea:'#e85a78', jade:'#f8a5b8', rose:'#ff7a9c', inkSoft:'#9a7080' };
+
+function paw(size, color){
+  return `<svg width="${size}" height="${size}" viewBox="0 0 64 64" style="display:inline-block;vertical-align:middle;flex:none">
+  <path d="M32 30 C 36 36, 48 38, 48 48 C 48 54, 42 58, 36 56 C 33 55, 32 53, 32 50 C 32 53, 31 55, 28 56 C 22 58, 16 54, 16 48 C 16 38, 28 36, 32 30 Z" fill="${color}"/>
+  <ellipse cx="12" cy="22" rx="6" ry="8" fill="${color}"/>
+  <ellipse cx="24" cy="11" rx="5.5" ry="7.5" fill="${color}"/>
+  <ellipse cx="40" cy="11" rx="5.5" ry="7.5" fill="${color}"/>
+  <ellipse cx="52" cy="22" rx="6" ry="8" fill="${color}"/></svg>`;
+}
+
+let storageOK = true;
+try { localStorage.setItem('__ls_t','1'); localStorage.removeItem('__ls_t'); } catch(e){ storageOK = false; }
+
+function normalize(d){
+  return {
+    tastings: Array.isArray(d && d.tastings) ? d.tastings : [],
+    periods:  Array.isArray(d && d.periods)  ? d.periods  : [],
+    pin: (d && d.pin) || null,
+    names: { a: (d && d.names && d.names.a) || '小唯記', b: (d && d.names && d.names.b) || '小弘記' },
+    sync: { passphrase: (d && d.sync && d.sync.passphrase) || null, enabled: !!(d && d.sync && d.sync.enabled) },
+  };
+}
+function load(){ try{ const raw = localStorage.getItem(KEY); if(raw) return normalize(JSON.parse(raw)); }catch(e){} return normalize(null); }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(db)); }catch(e){ storageOK = false; } }
+
+const enc = new TextEncoder(); const dec = new TextDecoder();
+let cryptoKey = null; let cryptoKeyPhrase = null;
+
+function bufToB64(buf){ const bytes = new Uint8Array(buf); let s = ''; for(let i=0;i<bytes.length;i++) s += String.fromCharCode(bytes[i]); return btoa(s); }
+function b64ToBuf(b64){ const s = atob(b64); const bytes = new Uint8Array(s.length); for(let i=0;i<s.length;i++) bytes[i] = s.charCodeAt(i); return bytes.buffer; }
+const FIXED_SALT = enc.encode('love-slowly-v2-fixed-salt-2026');
+
+async function deriveKey(passphrase){
+  if(cryptoKey && cryptoKeyPhrase === passphrase) return cryptoKey;
+  const baseKey = await crypto.subtle.importKey('raw', enc.encode(passphrase), 'PBKDF2', false, ['deriveKey']);
+  cryptoKey = await crypto.subtle.deriveKey({ name:'PBKDF2', salt:FIXED_SALT, iterations:100000, hash:'SHA-256' }, baseKey, { name:'AES-GCM', length:256 }, false, ['encrypt','decrypt']);
+  cryptoKeyPhrase = passphrase; return cryptoKey;
+}
+async function encryptObj(obj, passphrase){
+  const key = await deriveKey(passphrase); const iv = crypto.getRandomValues(new Uint8Array(12));
+  const data = enc.encode(JSON.stringify(obj));
+  const ct = await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, data);
+  return { iv: bufToB64(iv), ct: bufToB64(ct) };
+}
+async function decryptObj(payload, passphrase){
+  const key = await deriveKey(passphrase); const iv = new Uint8Array(b64ToBuf(payload.iv));
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, b64ToBuf(payload.ct));
+  return JSON.parse(dec.decode(pt));
+}
+
+const sync = { ready: false, fb: null, dbRef: null, unsub: null, state: 'off', lastError: '', pending: false };
+
+function fbConfigValid(){ return FIREBASE_CONFIG && FIREBASE_CONFIG.apiKey && FIREBASE_CONFIG.projectId; }
+
+function initFirebase(){
+  if(sync.fb) return true;
+  if(!fbConfigValid() || typeof firebase === 'undefined') return false;
+  try{
+    sync.fb = firebase.initializeApp(FIREBASE_CONFIG);
+    const fs = firebase.firestore();
+    try{ fs.enablePersistence({synchronizeTabs:true}).catch(()=>{}); }catch(e){}
+    sync.dbRef = fs.collection('records'); return true;
+  }catch(e){ sync.lastError = e.message || String(e); sync.state = 'error'; return false; }
+}
+
+async function pushRecord(kind, item){
+  if(!sync.dbRef || !db.sync.passphrase) return;
+  try{
+    const payload = await encryptObj(item, db.sync.passphrase);
+    await sync.dbRef.doc(kind + '__' + item.id).set({ kind, iv: payload.iv, ct: payload.ct, updatedAt: item.updatedAt || Date.now() });
+    if(sync.pending){ sync.pending = false; renderSyncBar(); }
+  }catch(e){ sync.pending = true; renderSyncBar(); }
+}
+async function pushAll(){
+  if(!sync.dbRef || !db.sync.passphrase) return;
+  for(const t of db.tastings) await pushRecord('t', t);
+  for(const p of db.periods)  await pushRecord('p', p);
+}
+
+function startListening(){
+  if(!sync.dbRef || !db.sync.passphrase){ sync.state='nokey'; renderSyncBar(); return; }
+  if(sync.unsub) sync.unsub();
+  sync.state = 'connecting'; renderSyncBar();
+  sync.unsub = sync.dbRef.onSnapshot(async (snap)=>{
+    let changed = false; let decryptFail = false;
+    for(const docSnap of snap.docs){
+      const d = docSnap.data(); if(!d || !d.ct) continue;
+      let item;
+      try{ item = await decryptObj({iv:d.iv, ct:d.ct}, db.sync.passphrase); }catch(e){ decryptFail = true; continue; }
+      changed = mergeRecord(d.kind, item) || changed;
+    }
+    if(decryptFail && false){ sync.state = 'error'; sync.lastError = '通關密語與雲端資料不符'; renderSyncBar(); return; }
+    sync.state = 'on'; sync.ready = true;
+    if(changed){ save(); render(); } else renderSyncBar();
+  }, (err)=>{ sync.state = 'error'; sync.lastError = err.code === 'permission-denied' ? '權限不足' : '連線失敗'; renderSyncBar(); });
+}
+
+function mergeRecord(kind, remote){
+  const list = kind === 't' ? db.tastings : db.periods;
+  const idx = list.findIndex(x=>x.id === remote.id);
+  if(idx === -1){ if(remote.deleted) return false; list.push(remote); return true; }
+  const local = list[idx];
+  if((remote.updatedAt || 0) > (local.updatedAt || 0)){
+    if(remote.deleted){ list.splice(idx, 1); return true; }
+    list[idx] = remote; return true;
+  }
+  return false;
+}
+function stopSync(){ if(sync.unsub){ sync.unsub(); sync.unsub = null; } sync.state = 'off'; sync.ready = false; renderSyncBar(); }
+async function enableSync(){
+  if(!db.sync.passphrase){ sync.state = 'nokey'; renderSyncBar(); return; }
+  if(!initFirebase()){ if(sync.state !== 'error'){ sync.state = 'error'; sync.lastError = '無法連上 Firebase'; } renderSyncBar(); return; }
+  db.sync.enabled = true; save(); startListening(); await pushAll();
+}
+
+function renderSyncBar(){ const el = document.getElementById('syncbar'); if(el) el.outerHTML = syncBarHTML(); }
+const pad2 = n => String(n).padStart(2,'0'); const iso = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+const todayISO = () => iso(new Date()); const asDate = d => typeof d === 'string' ? new Date(d) : d;
+const WEEKDAYS = ['日','一','二','三','四','五','六'];
+function fmtDate(d){ const t = asDate(d); return `${t.getFullYear()}/${t.getMonth()+1}/${t.getDate()}`; }
+function fmtShort(d){ const t = asDate(d); return `${t.getMonth()+1}/${t.getDate()}`; }
+function fmtLong(d){ const t = asDate(d); return `${t.getFullYear()} 年 ${t.getMonth()+1} 月 ${t.getDate()} 日 · 星期${WEEKDAYS[t.getDay()]}`; }
+function daysBetween(a,b){ return Math.round((asDate(b) - asDate(a)) / 86400000); }
+
+function predictNextPeriod(periods){
+  if(!periods || !periods.length) return null;
+  const sorted = [...periods].sort((a,b)=> new Date(b.startDate) - new Date(a.startDate));
+  const lastStart = new Date(sorted[0].startDate);
+  let avg = 28;
+  if(sorted.length >= 2){
+    const cycles = [];
+    for(let i=0;i<sorted.length-1;i++){ const diff = daysBetween(sorted[i+1].startDate, sorted[i].startDate); if(diff > 15 && diff < 60) cycles.push(diff); }
+    if(cycles.length) avg = Math.round(cycles.reduce((a,b)=>a+b,0)/cycles.length);
+  }
+  const next = new Date(lastStart); next.setDate(next.getDate()+avg); next.setHours(0,0,0,0);
+  const today = new Date(); today.setHours(0,0,0,0);
+  return { date:next, cycleLength:avg, daysUntil:daysBetween(today,next), sampleSize:Math.max(0,sorted.length-1) };
+}
+
+let db = load();
+let ui = { unlocked: !db.pin, pinFlow: db.pin ? { mode:'unlock', input:'', first:'', error:'' } : null, tab: 'home', histMode: 'list', calMonth: (()=>{ const d=new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); })(), expandedId: null, highlightId: null, sheet: null, periodForm: false, celebrate: false, celebItems: [], phraseModal: null };
+let hlTimer = null, celTimer = null;
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+const sortedTastings = () => [...db.tastings].sort((a,b)=> new Date(b.date) - new Date(a.date));
+const lastTasting = () => sortedTastings()[0] || null;
+const favoriteTasting = () => sortedTastings().find(t=>t.favorite) || null;
+const lastWishEntry = () => sortedTastings().find(t=> t.nextWish && t.nextWish.trim()) || null;
+
+function tagChips(tags){
+  if(!tags || !tags.length) return '';
+  return `<div style="margin-top:8px">` + tags.map(t=>{ const tag = ENERGY_TAGS.find(e=>e.id===t); return tag ? `<span class="tagchip">${tag.label}</span>` : ''; }).join('') + `</div>`;
+}
+function formLine(t){ return t.form === 'paired' ? `搭配${t.pairing ? ' · ' + esc(t.pairing) : ''}${t.matchFeel ? '（'+esc(t.matchFeel)+'）' : ''}` : '原味'; }
+function scorePair(t, big){
+  const s1 = big?24:20, s2 = big?32:26;
+  return `<div style="display:flex;align-items:baseline;gap:12px">
+    <div style="text-align:right"><div style="color:${C.jade};font-size:${s1}px;font-weight:500;line-height:1">${t.energyScore ?? '—'}</div><div class="dim" style="font-size:10px;letter-spacing:.1em;margin-top:2px">能量</div></div>
+    <div class="divline"></div>
+    <div style="text-align:right"><div style="color:${C.tea};font-size:${s2}px;font-weight:500;line-height:1">${t.score}</div><div class="dim" style="font-size:10px;letter-spacing:.1em;margin-top:2px">表現</div></div></div>`;
+}
+
+function lockHTML(f){
+  const isSetup = f.mode !== 'unlock';
+  const msg = isSetup ? (f.first ? '再輸入一次確認' : '設定 4 位數密碼') : '輸入密碼';
+  const dots = [0,1,2,3].map(i=> `<div class="pindot ${f.input.length>i?'fill':''}"></div>`).join('');
+  const keys = [1,2,3,4,5,6,7,8,9].map(n=> `<button data-act="pinNum" data-arg="${n}">${n}</button>`).join('');
+  return `<div class="lock"><div style="margin-bottom:32px">${paw(64, C.bow)}</div><div style="color:${C.tea};font-size:14px;letter-spacing:.2em;margin-bottom:8px;font-weight:600">為愛慢一次</div><div class="dim" style="font-size:13px;letter-spacing:.15em;margin-bottom:32px">${msg}</div><div class="pindots">${dots}</div><div class="pinerr">${f.error}</div><div class="pad">${keys}${isSetup ? `<button class="del" data-act="pinCancel" style="font-size:13px;letter-spacing:.1em">取消</button>` : `<button class="blank"></button>`}<button data-act="pinNum" data-arg="0">0</button><button class="del" data-act="pinDel">⌫</button></div></div>`;
+}
+
+function headerHTML(){ return `<div class="header"><div class="row">${paw(20, C.bow)}<div class="slogan">越感恩，越幸福 ❤️ 最美的是下一次 ❤️</div></div><div class="brand">♡ LOVE · SLOWLY ♡</div></div>${storageOK ? '' : `<div class="warnbar">⚠️ 預覽模式：這個環境無法保存資料。<br>請下載檔案後用手機瀏覽器開啟，資料才會留住。</div>`}`; }
+
+function syncBarHTML(){
+  if(!db.sync.enabled) return `<div id="syncbar"></div>`;
+  let dotCls='off', text='雲端同步 · 未連線';
+  switch(sync.state){
+    case 'on': dotCls='on'; text = sync.pending ? '雲端同步 · 待補傳' : '雲端同步 · 已連線'; break;
+    case 'connecting': dotCls='sync'; text='雲端同步 · 連線中…'; break;
+    case 'error': dotCls='err'; text='雲端同步 · ' + (sync.lastError||'發生問題'); break;
+    case 'nokey': dotCls='off'; text='雲端同步 · 尚未設定通關密語'; break;
+  }
+  return `<div id="syncbar" class="syncbar"><span class="syncdot ${dotCls}"></span><span>${esc(text)}</span></div>`;
+}
+
+function greeting(){ const h = new Date().getHours(); if(h < 5) return '夜深了 🌙'; if(h < 11) return '早安 ☀️'; if(h < 13) return '午安 🌸'; if(h < 18) return '午後好 🍵'; return '晚安 💕'; }
+
+function homeHTML(){
+  const last = lastTasting(); const fav = favoriteTasting(); const wish = lastWishEntry(); const info = predictNextPeriod(db.periods);
+  const since = last ? daysBetween(last.date, todayISO()) : null;
+  let h = `<div class="page"><div style="margin-bottom:32px"><div class="dim" style="font-size:13px;letter-spacing:.2em">${fmtLong(new Date())}</div><div style="font-size:28px;letter-spacing:.08em;margin-top:8px;font-weight:500">${greeting()}</div>${since != null ? `<div class="dim" style="font-size:12px;letter-spacing:.15em;margin-top:6px">距離上次 · ${since} 天</div>` : ''}</div>`;
+  if(info){ h += `<div class="card"><div class="label">M.C.</div><div style="display:flex;align-items:baseline;justify-content:space-between"><div><div style="color:${C.tea};font-size:24px;letter-spacing:.05em">${info.daysUntil >= 0 ? `預估 ${info.daysUntil} 天後` : `已過 ${-info.daysUntil} 天`}</div><div class="dim" style="font-size:13px;margin-top:4px;letter-spacing:.1em">${fmtDate(info.date)}</div></div><div class="dim" style="font-size:12px;text-align:right;letter-spacing:.1em">週期 ${info.cycleLength} 天${info.sampleSize===0 ? '<div style="margin-top:2px">（預設值）</div>' : ''}</div></div></div>`; }
+  if(fav){ h += `<button data-act="jumpFav" data-arg="${fav.id}" class="card" style="width:100%;text-align:left;display:block;background:var(--paper-deep);border-color:var(--bow);box-shadow:0 4px 12px rgba(255,122,156,.18)"><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px"><div class="label" style="margin-bottom:0">❤️ 最美的一次</div><span style="color:${C.bow};font-size:11px;letter-spacing:.1em;font-weight:600">${fmtDate(fav.date)}</span></div>${fav.notes ? `<div style="font-size:14px;line-height:1.7;white-space:pre-wrap;font-style:italic">「${esc(fav.notes)}」</div>` : `<div class="dim" style="font-size:13px;letter-spacing:.1em">${esc(fav.recordedBy)} · ${formLine(fav)}</div>`}<div style="color:${C.bow};font-size:11px;letter-spacing:.15em;margin-top:10px;text-align:right;font-weight:600">點擊重溫 →</div></button>`; }
+  if(wish){ h += `<div class="card" style="background:var(--cream);border:2px dashed var(--rose)"><div class="label">💭 上次說過</div><div style="font-size:14px;line-height:1.7;white-space:pre-wrap;margin-top:4px">${esc(wish.nextWish)}</div><div class="dim" style="font-size:11px;letter-spacing:.1em;margin-top:8px">— ${fmtDate(wish.date)}</div></div>`; }
+  if(last){ h += `<div class="card"><div class="label">最近一次</div><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px"><div style="font-size:17px;letter-spacing:.1em">${fmtDate(last.date)}${last.weather ? `<span class="dim" style="font-size:13px;margin-left:8px">${last.weather}</span>` : ''}</div>${scorePair(last, true)}</div><div class="dim" style="font-size:13px;letter-spacing:.1em">${esc(last.recordedBy)} · ${formLine(last)}</div>${tagChips(last.tags)}</div>`; }
+  else { h += `<div class="card"><div class="dim" style="font-size:15px;text-align:center;padding:20px 0;letter-spacing:.1em;line-height:1.9;font-weight:500"><div style="margin-bottom:8px">${paw(56, C.rose)}</div>還沒有記錄呢～<br><span style="font-size:13px">從第一次開始 💕</span></div></div>`; }
+  h += `<button class="bigbtn" data-act="add" style="margin-top:16px">${paw(22,'#fff')}<span>新增記錄</span>${paw(22,'#fff')}</button></div>`; return h;
+}
+
+function sheetHTML(){
+  const s = ui.sheet; const isValid = s.tags.includes('like') || s.tags.includes('dislike');
+  const wPills = WEATHER_OPTIONS.map(w=> `<button class="pill ${s.weather===w?'on':''}" data-act="wPick" data-arg="${w}">${w}</button>`).join('');
+  const rPills = [db.names.a, db.names.b].map(r=> `<button class="pill ${s.recordedBy===r?'on':''}" data-act="rPick" data-arg="${esc(r)}">${esc(r)}</button>`).join('');
+  const tagPills = ENERGY_TAGS.map(t=> `<button class="pill ${s.tags.includes(t.id)?'on':''}" data-act="tagPick" data-arg="${t.id}">${t.label}</button>`).join('');
+  const mfPills = ['不搭','搭','很搭'].map(m=> `<button class="pill ${s.matchFeel===m?'on tea':''}" data-act="mfPick" data-arg="${m}">${m}</button>`).join('');
+  return `<div class="sheet"><div class="sheet-in"><div class="sheethead"><button class="dim" data-act="cancelSheet">取消</button><div class="title">${s.id ? '編輯記錄' : '新增記錄'}</div><button data-act="saveSheet" ${isValid?'':'disabled'} style="color:${isValid?C.tea:C.inkSoft};opacity:${isValid?1:.4};font-weight:500">完成</button></div><div class="fieldblock field"><div class="label">日期</div><input type="date" value="${s.date}" data-bind="date"></div><div class="fieldblock"><div class="label">天氣</div><div class="pillrow">${wPills}</div></div><div class="fieldblock"><div class="label">記錄者</div><div class="pillrow">${rPills}</div></div><div class="fieldblock"><div class="label">形式</div><div class="pillrow"><button class="pill ${s.form==='original'?'on':''}" data-act="fPick" data-arg="original">原味</button><button class="pill ${s.form==='paired'?'on':''}" data-act="fPick" data-arg="paired">有搭配</button></div></div>${s.form==='paired' ? `<div class="fieldblock field"><div class="label">搭配</div><input type="text" value="${esc(s.pairing)}" data-bind="pairing" placeholder="搭配了什麼……"><div class="pillrow" style="margin-top:12px">${mfPills}</div></div>` : ''}<div class="fieldblock"><div class="label">原味能量分數</div><div class="scorebox" style="margin-bottom:12px"><div style="display:flex;align-items:baseline;justify-content:center;margin-bottom:12px"><span id="energyVal" style="color:${C.jade};font-size:40px;font-weight:500">${s.energyScore}</span><span class="dim" style="font-size:14px;margin-left:4px">/ 100</span></div><input type="range" class="jade" min="0" max="100" value="${s.energyScore}" data-bind="energyScore"><div class="dim" style="display:flex;justify-content:space-between;font-size:11px;margin-top:2px"><span>0</span><span>50</span><span>100</span></div></div><div class="pillrow">${tagPills}</div>${s.tags.includes('other') ? `<div class="field" style="margin-top:12px"><input type="text" value="${esc(s.otherNote)}" data-bind="otherNote" placeholder="自由輸入……" style="font-size:14px"></div>` : ''}${isValid ? '' : `<div class="hintline">· ❤️ 或 ❗️ 為必選項</div>`}</div><div class="fieldblock"><div class="label">表現分數</div><div class="scorebox"><div style="display:flex;align-items:baseline;justify-content:center;margin-bottom:12px"><span id="scoreVal" style="color:${C.tea};font-size:48px;font-weight:500">${s.score}</span><span class="dim" style="font-size:15px;margin-left:4px">/ 100</span></div><input type="range" min="0" max="100" value="${s.score}" data-bind="score"><div class="dim" style="display:flex;justify-content:space-between;font-size:11px;margin-top:2px"><span>0</span><span>50</span><span>100</span></div></div></div><div class="fieldblock field"><div class="label">備註（建議）</div><textarea rows="3" data-bind="notes" placeholder="這次的細節、感受、想記得的事……">${esc(s.notes)}</textarea></div><div class="fieldblock field"><div class="label">💭 下次想試試</div><textarea rows="2" data-bind="nextWish" placeholder="下次想配什麼？想換個方式？想……">${esc(s.nextWish)}</textarea></div></div></div>`;
+}
+
+function chartCard(){
+  const data = [...db.tastings].sort((a,b)=> new Date(a.date) - new Date(b.date)); if(data.length < 2) return '';
+  const W=320,H=180,L=30,R=10,T=12,B=24, n=data.length;
+  const X = i => L + (W-L-R) * (n===1 ? .5 : i/(n-1)); const Y = v => T + (H-T-B) * (1 - v/100);
+  const ptsOf = k => data.map((t,i)=>{ const v = k==='e' ? t.energyScore : t.score; return v==null ? null : [X(i), Y(v)]; }).filter(Boolean);
+  const line = (k,c)=>{ const p = ptsOf(k); if(!p.length) return ''; return `<polyline points="${p.map(q=>q.map(x=>x.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="${c}" stroke-width="2"/>` + p.map(q=>`<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="3" fill="${c}"/>`).join(''); };
+  const grid = [0,50,100].map(v=> `<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#ffd1dc" stroke-dasharray="2 4"/><text x="${L-6}" y="${Y(v)+3}" text-anchor="end" font-size="9" fill="${C.inkSoft}">${v}</text>`).join('');
+  const labIdx = n<=6 ? data.map((_,i)=>i) : [...new Set([0, Math.floor((n-1)/2), n-1])];
+  const labs = labIdx.map(i=> `<text x="${X(i)}" y="${H-6}" text-anchor="middle" font-size="9" fill="${C.inkSoft}">${fmtShort(data[i].date)}</text>`).join('');
+  return `<div class="card"><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px"><div class="label" style="margin-bottom:0">分數趨勢</div><div style="font-size:11px;letter-spacing:.1em;display:flex;gap:12px"><span style="color:${C.jade}">● 能量</span><span style="color:${C.tea}">● 表現</span></div></div><svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block">${grid}${line('e',C.jade)}${line('s',C.tea)}${labs}</svg></div>`;
+}
+
+function statsCard(){
+  if(db.tastings.length < 2) return '';
+  const es = db.tastings.map(t=>t.energyScore).filter(v=>v!=null); const os = db.tastings.map(t=>t.score);
+  const avg = a => a.length ? Math.round(a.reduce((x,y)=>x+y,0)/a.length) : null;
+  const likes = db.tastings.filter(t=> t.tags && t.tags.includes('like')).length; const dislikes = db.tastings.filter(t=> t.tags && t.tags.includes('dislike')).length;
+  const cell = (v,c,lab)=>`<div style="text-align:center"><div style="color:${c};font-size:22px;font-weight:500;line-height:1">${v ?? '—'}</div><div class="dim" style="font-size:10px;margin-top:4px;letter-spacing:.1em">${lab}</div></div>`;
+  return `<div class="card"><div class="label">累積</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">${cell(avg(es), C.jade, '能量平均')}${cell(avg(os), C.tea, '表現平均')}${cell(likes, '#c4385a', '❤️ 喜歡')}${cell(dislikes, C.rose, '❗️ 不喜歡')}</div></div>`;
+}
+
+function entryCard(t){
+  const open = ui.expandedId === t.id;
+  let inner = `<button data-act="expand" data-arg="${t.id}" style="width:100%;text-align:left;display:block"><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px"><div><div style="font-size:17px;letter-spacing:.1em">${fmtDate(t.date)}${t.weather ? `<span class="dim" style="font-size:13px;margin-left:8px">${t.weather}</span>` : ''}${t.favorite ? `<span style="font-size:13px;margin-left:6px">❤️</span>` : ''}</div><div class="dim" style="font-size:12px;margin-top:2px;letter-spacing:.1em">${esc(t.recordedBy)} · ${formLine(t)}</div></div>${scorePair(t, false)}</div>${tagChips(t.tags)}</button>`;
+  if(open){
+    const block = (lab, val, pre) => val ? `<div style="margin-bottom:10px"><span class="dim" style="font-size:12px;letter-spacing:.15em">${lab}</span><div style="font-size:14px;margin-top:2px;line-height:1.7;${pre?'white-space:pre-wrap':''}">${esc(val)}</div></div>` : '';
+    inner += `<div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">${t.form==='paired' && t.pairing ? block('搭配', t.pairing + (t.matchFeel ? '（'+t.matchFeel+'）' : '')) : ''}${block('其它', t.otherNote || t.specialNote)}${block('備註', t.notes, true)}${block('💭 下次想試試', t.nextWish, true)}<div style="display:flex;gap:10px;margin-top:14px"><button data-act="fav" data-arg="${t.id}" style="flex:1;padding:9px;border-radius:16px;font-size:14px;letter-spacing:.1em;${t.favorite ? `background:${C.bow};color:#fff;border:1px solid ${C.bow};font-weight:700` : `background:transparent;color:${C.bow};border:1px solid ${C.bow}`}">${t.favorite ? '❤️ 最美' : '🤍 標為最美'}</button><button data-act="edit" data-arg="${t.id}" style="flex:1;padding:9px;border-radius:16px;font-size:14px;letter-spacing:.15em;background:var(--paper-deep);color:var(--tea-deep)">編輯</button><button data-act="del" data-arg="${t.id}" style="flex:1;padding:9px;border-radius:16px;font-size:14px;letter-spacing:.15em;background:transparent;color:${C.rose};border:1px solid var(--border)">刪除</button></div></div>`;
+  }
+  return `<div class="card ${ui.highlightId===t.id?'hl':''}" id="entry-${t.id}">${inner}</div>`;
+}
+
+function calHTML(){
+  const m = ui.calMonth, y = m.getFullYear(), mo = m.getMonth();
+  const startDow = new Date(y, mo, 1).getDay(); const daysIn = new Date(y, mo+1, 0).getDate();
+  const byDate = {}; db.tastings.forEach(t=>{ (byDate[t.date] = byDate[t.date] || []).push(t); });
+  const pStarts = new Set(db.periods.map(p=>p.startDate));
+  const pred = predictNextPeriod(db.periods); const predISO = pred ? iso(pred.date) : null; const tdy = todayISO();
+  let cells = ''; for(let i=0;i<startDow;i++) cells += `<div class="calcell out"></div>`;
+  for(let d=1; d<=daysIn; d++){
+    const dISO = `${y}-${pad2(mo+1)}-${pad2(d)}`; const entries = byDate[dISO] || [];
+    const cls = ['calcell']; if(entries.length) cls.push('has'); if(dISO === tdy) cls.push('today'); if(dISO === predISO) cls.push('pred');
+    let marks = ''; if(entries.length){ marks += paw(15, entries.some(e=>e.favorite) ? C.bow : C.rose); if(entries.length > 1) marks += `<span style="font-size:9px;color:${C.bow};font-weight:700">×${entries.length}</span>`; }
+    if(pStarts.has(dISO)) marks += `<span style="font-size:11px">🌸</span>`;
+    cells += `<div class="${cls.join(' ')}" ${entries.length?`data-act="calDay" data-arg="${dISO}"`:''}><span>${d}</span><div class="marks">${marks}</div></div>`;
+  }
+  return `<div class="card"><div class="calnav"><button data-act="calPrev">‹</button><div style="display:flex;align-items:center;gap:10px"><div class="mon">${y} 年 ${mo+1} 月</div><button class="tdy" data-act="calToday">今天</button></div><button data-act="calNext">›</button></div><div class="calgrid">${WEEKDAYS.map(w=>`<div class="caldow">${w}</div>`).join('')}${cells}</div><div class="callegend"><span>${paw(13,C.rose)} 有記錄</span><span>${paw(13,C.bow)} 含最美</span><span>🌸 M.C. 開始</span><span><span style="display:inline-block;width:12px;height:12px;border:2px dashed ${C.tea};border-radius:4px"></span> 預估下次</span></div></div>`;
+}
+
+function historyHTML(){
+  const sorted = sortedTastings(); let h = `<div class="page">`;
+  if(!sorted.length){ h += `<div class="dim" style="font-size:15px;text-align:center;padding:60px 0;letter-spacing:.1em">還沒有任何記錄</div></div>`; return h; }
+  h += `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><div class="dim" style="font-size:13px;letter-spacing:.2em">共 ${sorted.length} 次</div><div style="display:flex;gap:6px"><button class="smallpill ${ui.histMode==='list'?'on':''}" data-act="histList">列表</button><button class="smallpill ${ui.histMode==='cal'?'on':''}" data-act="histCal">月曆</button></div></div>`;
+  if(ui.histMode === 'cal'){ h += calHTML(); } else { h += chartCard() + statsCard() + sorted.map(entryCard).join(''); }
+  return h + `</div>`;
+}
+
+function cycleHTML(){
+  const sorted = [...db.periods].sort((a,b)=> new Date(b.startDate) - new Date(a.startDate));
+  const info = predictNextPeriod(db.periods); const herName = db.names.a.replace(/記$/,'');
+  let h = `<div class="page"><div style="margin-bottom:24px"><div style="font-size:24px;letter-spacing:.15em;font-weight:500">M.C.</div><div class="dim" style="font-size:13px;letter-spacing:.15em;margin-top:4px">記錄${esc(herName)}的月經週期</div></div>`;
+  if(info){ h += `<div class="card"><div class="label">下次預估</div><div style="color:${C.tea};font-size:32px;letter-spacing:.05em;font-weight:500">${fmtDate(info.date)}</div><div class="dim" style="font-size:14px;margin-top:4px;letter-spacing:.1em">${info.daysUntil >= 0 ? `${info.daysUntil} 天後` : `已過 ${-info.daysUntil} 天`}</div><div class="dim" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;letter-spacing:.1em">平均週期 ${info.cycleLength} 天${info.sampleSize===0 ? '（預設值，需更多記錄）' : ` · 根據過去 ${info.sampleSize} 個週期`}</div></div>`; }
+  if(!ui.periodForm){ h += `<button class="ghostbtn" data-act="pOpen">+ 記錄這次來潮日</button>`; } else { h += `<div class="card field"><div class="label">來潮起始日</div><input type="date" id="newPeriodDate" value="${todayISO()}" style="margin-bottom:14px;background:var(--paper)"><div style="display:flex;gap:10px"><button data-act="pCancel" class="dim" style="flex:1;padding:10px;border-radius:16px;border:1px solid var(--border);font-size:14px;letter-spacing:.15em">取消</button><button data-act="pSave" style="flex:1;padding:10px;border-radius:16px;background:${C.tea};color:#fff;font-size:14px;letter-spacing:.15em;font-weight:500">儲存</button></div></div>`; }
+  if(sorted.length){ h += `<div style="margin-top:24px"><div class="dim" style="font-size:13px;letter-spacing:.2em;margin-bottom:8px">過往記錄</div>`; sorted.forEach((p,i)=>{ const nextP = sorted[i-1]; const cyc = nextP ? daysBetween(p.startDate, nextP.startDate) : null; h += `<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:15px;letter-spacing:.1em">${fmtDate(p.startDate)}</div>${cyc ? `<div class="dim" style="font-size:12px;margin-top:2px;letter-spacing:.1em">週期 ${cyc} 天</div>` : ''}</div><button class="dim" data-act="pDel" data-arg="${p.id}" style="font-size:13px;letter-spacing:.1em">刪除</button></div>`; }); h += `</div>`; }
+  return h + `</div>`;
+}
+
+function syncCardHTML(){
+  const configOK = fbConfigValid(); const hasPhrase = !!db.sync.passphrase;
+  if(!configOK){ return `<div class="card"><div class="label">☁️ 雲端同步</div><div class="dim" style="font-size:13px;letter-spacing:.05em;line-height:1.8">這個檔案還沒填入 Firebase 設定。<br>兩支手機要用「填好設定的同一個檔案」才能同步。</div></div>`; }
+  let statusText, dotColor;
+  if(!db.sync.enabled){ statusText='尚未開啟'; dotColor=C.inkSoft; }
+  else switch(sync.state){
+    case 'on': statusText = sync.pending?'已連線 · 待補傳':'已連線 · 即時同步中'; dotColor='#5fbf7f'; break;
+    case 'connecting': statusText='連線中…'; dotColor='#f0b429'; break;
+    case 'error': statusText=sync.lastError||'發生問題'; dotColor=C.bow; break;
+    case 'nokey': statusText='尚未設定通關密語'; dotColor=C.inkSoft; break;
+    default: statusText='未連線'; dotColor=C.inkSoft;
+  }
+  let body = `<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:9px;height:9px;border-radius:50%;background:${dotColor};flex:none"></span><span style="font-size:14px;letter-spacing:.05em">${esc(statusText)}</span></div>`;
+  if(!hasPhrase){ body += `<div class="dim" style="font-size:13px;letter-spacing:.05em;line-height:1.8;margin-bottom:14px">設定一組只有你們兩人知道的「通關密語」。記錄會用它加密後才上雲，雲端只存亂碼。<br><b style="color:var(--tea-deep)">兩支手機必須設定一模一樣的密語</b>，才能看到彼此的記錄。</div><button class="setbtn" data-act="phraseSet" style="width:100%">設定通關密語並開啟同步</button>`; }
+  else if(db.sync.enabled){ body += `<div class="setrow" style="margin-bottom:10px"><button class="setbtn" data-act="phraseSet">更改密語</button><button class="setbtn line" data-act="syncOff">關閉同步</button></div><button class="setbtn line" data-act="syncPushAll" style="width:100%;margin-bottom:12px">重新上傳本機全部資料</button><div class="setnote">兩支手機填同一個檔案、設同一組密語，就會自動看到彼此新增、編輯、刪除的記錄。沒網路也能記，連上網自動補傳。</div>`; }
+  else { body += `<button class="setbtn" data-act="syncOn" style="width:100%;margin-bottom:10px">開啟同步</button><button class="setbtn line" data-act="phraseSet" style="width:100%">更改通關密語</button>`; }
+  return `<div class="card"><div class="label">☁️ 雲端同步</div>${body}</div>`;
+}
+
+function phraseModalHTML(){
+  const m = ui.phraseModal;
+  return `<div class="modal"><div class="modal-in"><div style="font-size:17px;letter-spacing:.15em;font-weight:500;margin-bottom:6px">通關密語</div><div class="dim" style="font-size:12px;line-height:1.8;letter-spacing:.03em;margin-bottom:16px">兩支手機要設「完全一樣」的密語才能互相解密。可以是一句只有你們懂的話。<br><b style="color:var(--tea-deep)">忘記密語 = 雲端資料解不開</b>，請記牢。</div><div class="field" style="margin-bottom:12px"><input type="text" id="phraseInput" value="${esc(m.value)}" placeholder="輸入通關密語……" autocomplete="off" style="font-size:16px;letter-spacing:.05em"></div>${m.error ? `<div style="color:${C.bow};font-size:12px;letter-spacing:.1em;margin-bottom:12px">${esc(m.error)}</div>` : ''}<div style="display:flex;gap:10px"><button class="setbtn line" data-act="phraseCancel" style="flex:1">取消</button><button class="setbtn" data-act="phraseSave" style="flex:1;background:${C.tea};color:#fff">儲存並同步</button></div></div></div>`;
+}
+
+function settingsHTML(){
+  const first = db.tastings.length ? [...db.tastings].sort((a,b)=> new Date(a.date) - new Date(b.date))[0].date : null;
+  return `<div class="page"><div style="font-size:24px;letter-spacing:.15em;font-weight:500;margin-bottom:24px">設定</div>${syncCardHTML()}<div class="card"><div class="label">密碼鎖</div><div class="dim" style="font-size:13px;letter-spacing:.1em;margin-bottom:14px">${db.pin ? '已開啟 · 開啟 App 時需輸入密碼' : '未設定'}</div><div class="setrow"><button class="setbtn" data-act="pinSet">${db.pin ? '更改密碼' : '設定密碼'}</button>${db.pin ? `<button class="setbtn line" data-act="pinRemove">移除密碼</button>` : ''}</div></div><div class="card field"><div class="label">記錄者名稱</div><input type="text" value="${esc(db.names.a)}" data-bind="nameA" style="margin-bottom:10px"><input type="text" value="${esc(db.names.b)}" data-bind="nameB"><div class="setnote" style="margin-top:10px">改了之後，新記錄會用新名字；舊記錄保持原樣。</div></div><div class="card"><div class="label">備份</div><div class="setrow" style="margin-bottom:12px"><button class="setbtn" data-act="export">匯出備份</button><button class="setbtn line" data-act="importClick">匯入備份</button></div><div class="setnote">資料只存在這台裝置的瀏覽器裡。建議偶爾匯出一次 JSON 檔留存；換手機或重灌時用「匯入備份」還原。</div></div><div class="card"><div class="label">資料</div><div class="dim" style="font-size:13px;letter-spacing:.1em;line-height:2">儀式記錄 · ${db.tastings.length} 次<br>M.C. 記錄 · ${db.periods.length} 筆${first ? `<br>最早記錄 · ${fmtDate(first)}` : ''}</div></div><div style="text-align:center;margin-top:28px">${paw(28, C.rose)}<div class="dim" style="font-size:11px;letter-spacing:.25em;margin-top:8px">為愛慢一次 · LOVE SLOWLY</div><div class="dim" style="font-size:10px;letter-spacing:.2em;margin-top:4px">私密儀式記錄 · v2</div></div></div>`;
+}
+
+function celebrationHTML(){
+  const falls = ui.celebItems.map(it=> `<div class="fall" style="position:absolute;left:${it.left}%;top:0;font-size:${it.size}px;animation:lovefall ${it.duration}s ease-in ${it.delay}s forwards">${it.type}</div>`).join('');
+  return `<div class="cel">${falls}<div class="bloom">❤️ 100 ❤️</div></div>`;
+}
+
+function tabbarHTML(){
+  const t = (key, icon, label)=> `<button class="tab ${ui.tab===key?'on':''}" data-act="tab" data-arg="${key}">${icon}<span>${label}</span></button>`;
+  return `<div class="tabbar">${t('home', paw(16, ui.tab==='home'?C.bow:C.inkSoft), '今日')}${t('history','📖','過往')}${t('cycle','🌸','M.C.')}${t('settings','🎀','設定')}</div>`;
+}
+
+const app = document.getElementById('app');
+
+function render(keepScroll){
+  if(keepScroll === undefined) keepScroll = true;
+  const y = window.scrollY; const oldSheet = document.querySelector('.sheet'); const sheetY = oldSheet ? oldSheet.scrollTop : 0;
+  if(ui.pinFlow && ui.pinFlow.mode === 'unlock' && !ui.unlocked){ app.innerHTML = lockHTML(ui.pinFlow); return; }
+  let h = headerHTML(); h += syncBarHTML();
+  if(ui.tab === 'home') h += homeHTML(); else if(ui.tab === 'history') h += historyHTML(); else if(ui.tab === 'cycle') h += cycleHTML(); else h += settingsHTML();
+  h += tabbarHTML();
+  if(ui.sheet) h += sheetHTML(); if(ui.pinFlow && ui.pinFlow.mode === 'set') h += lockHTML(ui.pinFlow); if(ui.phraseModal) h += phraseModalHTML(); if(ui.celebrate) h += celebrationHTML();
+  app.innerHTML = h;
+  if(keepScroll) window.scrollTo(0, y); const newSheet = document.querySelector('.sheet'); if(newSheet) newSheet.scrollTop = sheetY;
+}
+
+function scrollToEntry(id){ requestAnimationFrame(()=>{ const el = document.getElementById('entry-'+id); if(el) el.scrollIntoView({behavior:'smooth', block:'center'}); }); }
+function fadeHighlight(){ clearTimeout(hlTimer); hlTimer = setTimeout(()=>{ ui.highlightId = null; render(); }, 2500); }
+
+function newDraft(){ return { id:null, date:todayISO(), weather:'', recordedBy:db.names.a, form:'original', pairing:'', matchFeel:'', tags:[], otherNote:'', energyScore:59, score:59, notes:'', nextWish:'', favorite:false, createdAt:null }; }
+function editDraft(t){ return { id:t.id, date:t.date, weather:t.weather||'', recordedBy:t.recordedBy||db.names.a, form:t.form||'original', pairing:t.pairing||'', matchFeel:t.matchFeel||'', tags:[...(t.tags||[])], otherNote:t.otherNote||t.specialNote||'', energyScore:t.energyScore ?? 59, score:t.score ?? 59, notes:t.notes||'', nextWish:t.nextWish||'', favorite:!!t.favorite, createdAt:t.createdAt||null }; }
+function saveSheet(){
+  const s = ui.sheet; if(!(s.tags.includes('like') || s.tags.includes('dislike'))) return;
+  const entry = { id: s.id || 't-'+Date.now(), date: s.date, weather: s.weather, recordedBy: s.recordedBy, form: s.form, pairing: s.form==='paired' ? s.pairing : '', matchFeel: s.form==='paired' ? s.matchFeel : '', tags: s.tags, otherNote: s.tags.includes('other') ? s.otherNote : '', energyScore: Number(s.energyScore), score: Number(s.score), notes: s.notes, nextWish: s.nextWish, favorite: s.favorite, createdAt: s.createdAt || new Date().toISOString(), updatedAt: Date.now() };
+  const exists = db.tastings.some(t=>t.id === entry.id);
+  db.tastings = exists ? db.tastings.map(t=> t.id===entry.id ? entry : t) : [...db.tastings, entry];
+  save(); if(sync.state==='on'||sync.state==='connecting') pushRecord('t', entry);
+  ui.sheet = null;
+  if(entry.score === 100){
+    ui.celebrate = true; ui.celebItems = Array.from({length:24}).map((_,i)=>({ id:i, left:Math.random()*100, delay:Math.random()*1.5, duration:3+Math.random()*2, size:16+Math.random()*16, type:Math.random()>.5 ? '🌸' : '❤️' }));
+    clearTimeout(celTimer); celTimer = setTimeout(()=>{ ui.celebrate=false; render(); }, 4200);
+  }
+  render(false);
+}
+function toggleTag(id){ const s = ui.sheet; let tags = s.tags; if(id==='like' && tags.includes('dislike')) tags = [...tags.filter(t=>t!=='dislike'),'like']; else if(id==='dislike' && tags.includes('like')) tags = [...tags.filter(t=>t!=='like'),'dislike']; else tags = tags.includes(id) ? tags.filter(t=>t!==id) : [...tags,id]; s.tags = tags; }
+function toggleFavorite(id){
+  const target = db.tastings.find(t=>t.id===id); if(!target) return;
+  const willFav = !target.favorite; const touched = []; const now = Date.now();
+  db.tastings = db.tastings.map(t=>{ if(t.id===id){ const u={...t, favorite:willFav, updatedAt:now}; touched.push(u); return u; } if(willFav && t.favorite){ const u={...t, favorite:false, updatedAt:now}; touched.push(u); return u; } return t; });
+  save(); if(sync.state==='on'||sync.state==='connecting') touched.forEach(t=>pushRecord('t', t));
+}
+function pinComplete(pin){
+  const f = ui.pinFlow; if(!f) return;
+  if(f.mode === 'unlock'){ if(pin === db.pin){ ui.unlocked = true; ui.pinFlow = null; } else { f.error = '密碼不對'; f.input = ''; } }
+  else { if(!f.first){ f.first = pin; f.input = ''; } else if(pin === f.first){ db.pin = pin; save(); ui.pinFlow = null; } else { f.error = '兩次輸入不一致'; f.input = ''; f.first = ''; } }
+  render();
+}
+function doExport(){
+  const safe = {...db, sync: {enabled: db.sync.enabled, passphrase: null}};
+  const blob = new Blob([JSON.stringify(safe, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'love-slowly-備份-' + todayISO() + '.json'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=> URL.revokeObjectURL(a.href), 3000);
+}
+
+app.addEventListener('click', e=>{
+  const el = e.target.closest('[data-act]'); if(!el) return;
+  const act = el.dataset.act, arg = el.dataset.arg;
+  switch(act){
+    case 'tab': ui.tab = arg; ui.expandedId = null; render(false); break;
+    case 'add': ui.sheet = newDraft(); render(); break;
+    case 'cancelSheet': ui.sheet = null; render(); break;
+    case 'saveSheet': saveSheet(); break;
+    case 'wPick': ui.sheet.weather = ui.sheet.weather===arg ? '' : arg; render(); break;
+    case 'rPick': ui.sheet.recordedBy = arg; render(); break;
+    case 'fPick': ui.sheet.form = arg; render(); break;
+    case 'mfPick': ui.sheet.matchFeel = ui.sheet.matchFeel===arg ? '' : arg; render(); break;
+    case 'tagPick': toggleTag(arg); render(); break;
+    case 'expand': ui.expandedId = ui.expandedId===arg ? null : arg; render(); break;
+    case 'fav': toggleFavorite(arg); render(); break;
+    case 'edit': { const t = db.tastings.find(x=>x.id===arg); if(t){ ui.sheet = editDraft(t); render(); } break; }
+    case 'del': if(confirm('確定刪除這筆記錄？')){ if(sync.state==='on'||sync.state==='connecting') pushRecord('t', {id:arg, deleted:true, updatedAt:Date.now()}); db.tastings = db.tastings.filter(t=>t.id!==arg); save(); render(); } break;
+    case 'jumpFav': ui.tab = 'history'; ui.histMode = 'list'; ui.expandedId = arg; ui.highlightId = arg; render(false); scrollToEntry(arg); fadeHighlight(); break;
+    case 'histList': ui.histMode = 'list'; render(); break;
+    case 'histCal': ui.histMode = 'cal'; render(); break;
+    case 'calPrev': ui.calMonth = new Date(ui.calMonth.getFullYear(), ui.calMonth.getMonth()-1, 1); render(); break;
+    case 'calNext': ui.calMonth = new Date(ui.calMonth.getFullYear(), ui.calMonth.getMonth()+1, 1); render(); break;
+    case 'calToday': { const d=new Date(); ui.calMonth = new Date(d.getFullYear(), d.getMonth(), 1); render(); break; }
+    case 'calDay': { const list = sortedTastings().filter(t=>t.date===arg); if(!list.length) break; ui.histMode = 'list'; ui.expandedId = list[0].id; ui.highlightId = list[0].id; render(false); scrollToEntry(list[0].id); fadeHighlight(); break; }
+    case 'pOpen': ui.periodForm = true; render(); break;
+    case 'pCancel': ui.periodForm = false; render(); break;
+    case 'pSave': { const inp = document.getElementById('newPeriodDate'); const d = inp && inp.value; if(d){ const p = {id:'p-'+Date.now(), startDate:d, updatedAt:Date.now()}; db.periods = [...db.periods, p]; save(); if(sync.state==='on'||sync.state==='connecting') pushRecord('p', p); } ui.periodForm = false; render(); break; }
+    case 'pDel': if(confirm('刪除這筆？')){ if(sync.state==='on'||sync.state==='connecting') pushRecord('p', {id:arg, deleted:true, updatedAt:Date.now()}); db.periods = db.periods.filter(p=>p.id!==arg); save(); render(); } break;
+    case 'export': doExport(); break;
+    case 'importClick': document.getElementById('impfile').click(); break;
+    case 'phraseSet': ui.phraseModal = { value: db.sync.passphrase || '', error: '' }; render(); break;
+    case 'phraseCancel': ui.phraseModal = null; render(); break;
+    case 'phraseSave': { const inp = document.getElementById('phraseInput'); const v = (inp && inp.value || '').trim(); if(v.length < 4){ ui.phraseModal.error = '密語至少 4 個字'; render(); break; } db.sync.passphrase = v; cryptoKey = null; cryptoKeyPhrase = null; save(); ui.phraseModal = null; render(); enableSync(); break; }
+    case 'syncOn': enableSync(); break;
+    case 'syncOff': db.sync.enabled = false; save(); stopSync(); render(); break;
+    case 'syncPushAll': if(sync.state!=='on' && sync.state!=='connecting'){ enableSync(); } pushAll().then(()=>{ alert('已重新上傳 💕'); renderSyncBar(); }); break;
+    case 'pinSet': ui.pinFlow = {mode:'set', input:'', first:'', error:''}; render(); break;
+    case 'pinRemove': if(confirm('確定移除密碼鎖？')){ db.pin = null; save(); render(); } break;
+    case 'pinCancel': ui.pinFlow = null; render(); break;
+    case 'pinNum': { const f = ui.pinFlow; if(!f || f.input.length >= 4) break; f.input += arg; f.error = ''; if(f.input.length === 4){ const pin = f.input; render(); setTimeout(()=> pinComplete(pin), 180); } else render(); break; }
+    case 'pinDel': { const f = ui.pinFlow; if(!f) break; f.input = f.input.slice(0,-1); f.error = ''; render(); break; }
+  }
+});
+
+function handleBind(e){
+  const b = e.target.dataset && e.target.dataset.bind; if(!b) return; const v = e.target.value;
+  switch(b){
+    case 'nameA': db.names.a = v; save(); break;
+    case 'nameB': db.names.b = v; save(); break;
+    case 'energyScore': if(ui.sheet){ ui.sheet.energyScore = +v; const el = document.getElementById('energyVal'); if(el) el.textContent = v; } break;
+    case 'score': if(ui.sheet){ ui.sheet.score = +v; const el = document.getElementById('scoreVal'); if(el) el.textContent = v; } break;
+    case 'date': case 'pairing': case 'otherNote': case 'notes': case 'nextWish': if(ui.sheet) ui.sheet[b] = v; break;
+  }
+}
+app.addEventListener('input', handleBind); app.addEventListener('change', handleBind);
+document.getElementById('impfile').addEventListener('change', e=>{
+  const file = e.target.files && e.target.files[0]; e.target.value = ''; if(!file) return; const reader = new FileReader();
+  reader.onload = ()=>{ try{ const parsed = JSON.parse(reader.result); if(!Array.isArray(parsed.tastings)) throw new Error('格式不對'); if(confirm(`匯入將以備份取代目前資料。確定嗎？`)){ db = normalize(parsed); save(); cryptoKey = null; cryptoKeyPhrase = null; ui.unlocked = !db.pin; ui.pinFlow = db.pin ? {mode:'unlock', input:'', first:'', error:''} : null; render(false); if(db.sync.enabled && db.sync.passphrase && fbConfigValid()){ if(initFirebase()){ startListening(); pushAll(); } } alert('匯入完成 💕'); } }catch(err){ alert('檔案錯誤'); } };
+  reader.readAsText(file);
+});
+
+render(false);
+if(db.sync.enabled && db.sync.passphrase && fbConfigValid()){ const tryStart = (n)=>{ if(typeof firebase !== 'undefined'){ if(initFirebase()) startListening(); } else if(n < 40){ setTimeout(()=>tryStart(n+1), 100); } }; tryStart(0); }
+window.addEventListener('online', ()=>{ if(db.sync.enabled && sync.pending) pushAll(); if(db.sync.enabled && sync.state==='error') startListening(); });
+</script>
+</body>
+</html>
