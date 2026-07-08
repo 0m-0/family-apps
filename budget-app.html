@@ -572,7 +572,7 @@ function listHTML(){
 function quickHTML(){
   var treeStores = cStores(db.tree, []);
   function qsList(){
-    return db.qsIds.map(function(sid){ if(sid==="pxmart") return PXMART; var found=null; for(var i=0;i<treeStores.length;i++){ if(treeStores[i].id===sid){ found=treeStores[i]; break; } } if(!found) return null; var node=fn(db.tree,found.treePath); if(!node) return null; return buildQS(db.tree,found.treePath,node,db.entries); }).filter(Boolean);
+    return db.qsIds.map(function(sid){ if(sid==="pxmart") return m(PXMART,{qid:"pxmart"}); var found=null; for(var i=0;i<treeStores.length;i++){ if(treeStores[i].id===sid){ found=treeStores[i]; break; } } if(!found) return null; var node=fn(db.tree,found.treePath); if(!node) return null; return m(buildQS(db.tree,found.treePath,node,db.entries),{qid:sid}); }).filter(Boolean);
   }
   var cart = ui.cart;
   var cartTotal = cart.reduce(function(s,c){ return s+c.price*c.qty; },0);
@@ -588,8 +588,8 @@ function quickHTML(){
     qsList().forEach(function(store){
       var cnt = store.sections.reduce(function(s,sec){ return s+sec.items.length; },0);
       var canRemove = !store.builtIn;
-      var cardAct = ui.quickEdit ? '' : ('data-act="openStore" data-arg="'+store.id+'"');
-      h += '<div class="card" '+cardAct+' style="display:flex;align-items:center;gap:16px;padding:20px;cursor:'+(ui.quickEdit?'default':'pointer')+'"><div style="width:50px;height:50px;border-radius:14px;background:'+store.color+'18;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">'+store.icon+'</div><div style="flex:1;min-width:0"><div style="font-size:18px;font-weight:700">'+esc(store.label)+'</div><div style="font-size:12px;color:var(--t2);margin-top:2px">'+cnt+' 個品項</div></div>'+(ui.quickEdit ? (canRemove?'<button data-act="removeStore" data-arg="'+store.id+'" style="background:#FDEBEB;border:none;border-radius:10px;width:36px;height:36px;font-size:18px;color:var(--dg);flex-shrink:0;display:flex;align-items:center;justify-content:center">✕</button>':'<span style="font-size:11px;color:#C4C0BA;flex-shrink:0">內建</span>') : '<span style="font-size:16px;color:#C4C0BA;flex-shrink:0">›</span>')+'</div>';
+      var cardAct = ui.quickEdit ? '' : ('data-act="openStore" data-arg="'+store.qid+'"');
+      h += '<div class="card" '+cardAct+' style="display:flex;align-items:center;gap:16px;padding:20px;cursor:'+(ui.quickEdit?'default':'pointer')+'"><div style="width:50px;height:50px;border-radius:14px;background:'+store.color+'18;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">'+store.icon+'</div><div style="flex:1;min-width:0"><div style="font-size:18px;font-weight:700">'+esc(store.label)+'</div><div style="font-size:12px;color:var(--t2);margin-top:2px">'+cnt+' 個品項</div></div>'+(ui.quickEdit ? (canRemove?'<button data-act="removeStore" data-arg="'+store.qid+'" style="background:#FDEBEB;border:none;border-radius:10px;width:36px;height:36px;font-size:18px;color:var(--dg);flex-shrink:0;display:flex;align-items:center;justify-content:center">✕</button>':'<span style="font-size:11px;color:#C4C0BA;flex-shrink:0">內建</span>') : '<span style="font-size:16px;color:#C4C0BA;flex-shrink:0">›</span>')+'</div>';
     });
     if(!ui.quickEdit){
     if(!ui.showPick){
