@@ -378,7 +378,7 @@ var ui = {
   navPath:[], selItem:null, addVeg:false, amt:"", qty:1, note:"", recip:"", showNew:false, newName:"", newType:"item",
   editEntry:null, editAmt:"", editQty:1, editNote:"", editDate:"", editRecorder:"wei",
   qFrom:MSTART, qTo:TODAY, qMode:"category", qDrill:null, qItemDrill:null, qMemberDrill:null,
-  qStore:null, cart:[], editCartIdx:null, editCartP:"", showPick:false, cashPaid:"",
+  qStore:null, cart:[], editCartIdx:null, editCartP:"", showPick:false, cashPaid:"", quickEdit:false,
   homeDrill:null, homeDrillMonth:null,
   listFilter:[], phraseModal:null
 };
@@ -581,11 +581,17 @@ function quickHTML(){
 
   var h = '<div style="padding:20px 16px 100px" class="fade">';
   if(!ui.qStore){
-    h += '<div style="font-size:22px;font-weight:800;margin-bottom:20px">⚡ 快速記帳</div><div style="display:flex;flex-direction:column;gap:10px">';
+    var hasRemovable = qsList().some(function(s){ return !s.builtIn; });
+    h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px"><div style="font-size:22px;font-weight:800">⚡ 快速記帳</div>'+(hasRemovable?'<button data-act="toggleQuickEdit" style="background:'+(ui.quickEdit?'var(--ac)':'var(--al)')+';border:none;border-radius:20px;padding:7px 16px;font-size:14px;font-weight:600;color:'+(ui.quickEdit?'#fff':'var(--ac)')+'">'+(ui.quickEdit?'完成':'編輯')+'</button>':'')+'</div>';
+    if(ui.quickEdit) h += '<div style="font-size:12px;color:var(--t2);margin-bottom:14px;text-align:center">點 ✕ 移除商家，完成後按「完成」</div>';
+    h += '<div style="display:flex;flex-direction:column;gap:10px">';
     qsList().forEach(function(store){
       var cnt = store.sections.reduce(function(s,sec){ return s+sec.items.length; },0);
-      h += '<div class="card" data-act="openStore" data-arg="'+store.id+'" style="display:flex;align-items:center;gap:16px;padding:20px;cursor:pointer"><div style="width:50px;height:50px;border-radius:14px;background:'+store.color+'18;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">'+store.icon+'</div><div style="flex:1;min-width:0"><div style="font-size:18px;font-weight:700">'+esc(store.label)+'</div><div style="font-size:12px;color:var(--t2);margin-top:2px">'+cnt+' 個品項</div></div>'+(!store.builtIn?'<button data-act="removeStore" data-arg="'+store.id+'" data-stop="1" style="background:none;border:none;font-size:18px;color:#C4C0BA;padding:8px;flex-shrink:0">✕</button>':'')+'<span style="font-size:16px;color:#C4C0BA;flex-shrink:0">›</span></div>';
+      var canRemove = !store.builtIn;
+      var cardAct = ui.quickEdit ? '' : ('data-act="openStore" data-arg="'+store.id+'"');
+      h += '<div class="card" '+cardAct+' style="display:flex;align-items:center;gap:16px;padding:20px;cursor:'+(ui.quickEdit?'default':'pointer')+'"><div style="width:50px;height:50px;border-radius:14px;background:'+store.color+'18;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">'+store.icon+'</div><div style="flex:1;min-width:0"><div style="font-size:18px;font-weight:700">'+esc(store.label)+'</div><div style="font-size:12px;color:var(--t2);margin-top:2px">'+cnt+' 個品項</div></div>'+(ui.quickEdit ? (canRemove?'<button data-act="removeStore" data-arg="'+store.id+'" style="background:#FDEBEB;border:none;border-radius:10px;width:36px;height:36px;font-size:18px;color:var(--dg);flex-shrink:0;display:flex;align-items:center;justify-content:center">✕</button>':'<span style="font-size:11px;color:#C4C0BA;flex-shrink:0">內建</span>') : '<span style="font-size:16px;color:#C4C0BA;flex-shrink:0">›</span>')+'</div>';
     });
+    if(!ui.quickEdit){
     if(!ui.showPick){
       h += '<button data-act="showPick" style="background:transparent;border:2px dashed #E8E4DE;border-radius:var(--rd);padding:20px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ac);font-size:15px;font-weight:600">＋ 新增快速商家</button>';
     } else {
@@ -595,6 +601,7 @@ function quickHTML(){
       else { h += '<div style="display:flex;flex-direction:column;gap:2px;max-height:300px;overflow-y:auto">'; availStores.forEach(function(st){ var rc=gr(db.tree,st.treePath[0]); h += '<button data-act="addStore" data-arg="'+st.id+'" style="background:transparent;border:none;border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;text-align:left;width:100%"><div style="width:32px;height:32px;border-radius:8px;background:'+(rc?rc.color:"#ccc")+'18;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">'+(rc?rc.icon:"📌")+'</div><div><div style="font-size:14px;font-weight:600">'+esc(st.label)+'</div><div style="font-size:11px;color:var(--t2)">'+esc(bl(db.tree,st.treePath).join(" › "))+'</div></div></button>'; }); h += '</div>'; }
       h += '</div>';
     }
+    } /* end if(!ui.quickEdit) */
     h += '</div>';
   } else {
     var store = ui.qStore;
@@ -799,7 +806,7 @@ app.addEventListener('click', function(ev){
   var el = ev.target.closest('[data-act]'); if(!el) return;
   var act = el.dataset.act, arg = el.dataset.arg;
   switch(act){
-    case 'tab': ui.view=arg; render(); break;
+    case 'tab': ui.view=arg; ui.quickEdit=false; render(); break;
     case 'goAdd': resetAdd(); ui.view="add"; render(); break;
     case 'setRecorder': db.recorder=arg; saveDB(); render(); break;
     case 'editSetRecorder': ui.editRecorder=arg; render(); break;
@@ -876,7 +883,8 @@ app.addEventListener('click', function(ev){
     // quick / cart
     case 'openStore': { var treeStores=cStores(db.tree,[]); var store; if(arg==="pxmart") store=PXMART; else { var found=null; for(var i=0;i<treeStores.length;i++){ if(treeStores[i].id===arg){ found=treeStores[i]; break; } } var node=found?fn(db.tree,found.treePath):null; store=(found&&node)?buildQS(db.tree,found.treePath,node,db.entries):null; } if(store){ ui.qStore=store; ui.cart=[]; ui.cashPaid=""; } render(); break; }
     case 'closeStore': { if(ui.cart.length>0 && !confirm("購物車尚有品項，確定離開？")) break; ui.qStore=null; ui.cart=[]; ui.cashPaid=""; render(); break; }
-    case 'removeStore': { db.qsIds=db.qsIds.filter(function(id){ return id!==arg; }); saveDB(); showToast("已移除"); render(); break; }
+    case 'toggleQuickEdit': ui.quickEdit=!ui.quickEdit; render(); break;
+    case 'removeStore': { db.qsIds=db.qsIds.filter(function(id){ return id!==arg; }); saveDB(); showToast("已移除"); var stillRemovable=false; var ts=cStores(db.tree,[]); db.qsIds.forEach(function(id){ if(id!=="pxmart") stillRemovable=true; }); if(!stillRemovable) ui.quickEdit=false; render(); break; }
     case 'showPick': ui.showPick=true; render(); break;
     case 'hidePick': ui.showPick=false; render(); break;
     case 'addStore': { db.qsIds=db.qsIds.concat([arg]); saveDB(); ui.showPick=false; showToast("已新增"); render(); break; }
