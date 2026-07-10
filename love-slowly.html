@@ -106,8 +106,18 @@ input[type=range].jade{accent-color:var(--jade)}
 </style>
 </head>
 <body>
-<div id="app"></div>
+<div id="app"><div style="padding:70px 24px;text-align:center;color:#9a7080;font-family:sans-serif"><div style="font-size:34px;margin-bottom:16px">🎀</div><div style="color:#e85a78;font-weight:600;font-size:16px;margin-bottom:6px">為愛慢一次</div><div style="font-size:13px">載入中…</div></div></div>
 <input type="file" id="impfile" accept=".json,application/json" style="display:none">
+<script>
+window.onerror = function(msg, url, line){
+  // 忽略跨網域資源產生的無意義雜訊
+  if(!msg || msg === 'Script error.' || line === 0){ return true; }
+  var a = document.getElementById('app');
+  if(a){ a.innerHTML = '<div style="padding:48px 24px;text-align:center;color:#c4385a;font-family:sans-serif"><div style="font-size:30px;margin-bottom:14px">🎀</div><h3 style="margin-bottom:10px;color:#5a3340">系統發生錯誤</h3><p style="background:#fff;padding:15px;border-radius:14px;font-size:13px;text-align:left;word-break:break-all;border:1px solid #ffd1dc;color:#5a3340">' + msg + '<br>Line: ' + line + '</p><p style="margin-top:18px;font-size:13px;color:#9a7080">請重新整理頁面；你的資料不會遺失。</p></div>'; }
+  return true;
+};
+window.addEventListener('unhandledrejection', function(e){ e.preventDefault(); });
+</script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
