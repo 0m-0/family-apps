@@ -314,7 +314,7 @@ function lockHTML(f){
   return `<div class="lock"><div style="margin-bottom:32px">${paw(64, C.bow)}</div><div style="color:${C.tea};font-size:14px;letter-spacing:.2em;margin-bottom:8px;font-weight:600">為愛慢一次</div><div class="dim" style="font-size:13px;letter-spacing:.15em;margin-bottom:32px">${msg}</div><div class="pindots">${dots}</div><div class="pinerr">${f.error}</div><div class="pad">${keys}${isSetup ? `<button class="del" data-act="pinCancel" style="font-size:13px;letter-spacing:.1em">取消</button>` : `<button class="blank"></button>`}<button data-act="pinNum" data-arg="0">0</button><button class="del" data-act="pinDel">⌫</button></div></div>`;
 }
 
-function headerHTML(){ return `<div class="header"><div class="row">${paw(20, C.bow)}<div class="slogan">越感恩，越幸福 ❤️ 最美的是下一次 ❤️</div></div><div class="brand">♡ LOVE · SLOWLY ♡</div></div>${storageOK ? '' : `<div class="warnbar">⚠️ 預覽模式：這個環境無法保存資料。<br>請下載檔案後用手機瀏覽器開啟，資料才會留住。</div>`}`; }
+function headerHTML(){ return `<div class="header"><div class="row">${paw(20, C.bow)}<div class="slogan">越感恩，越幸福 ❤️ 最美的是下一次 ❤️ 又乖又色 ❤️</div></div><div class="brand">♡ LOVE · SLOWLY ♡</div></div>${storageOK ? '' : `<div class="warnbar">⚠️ 預覽模式：這個環境無法保存資料。<br>請下載檔案後用手機瀏覽器開啟，資料才會留住。</div>`}`; }
 
 function syncBarHTML(){
   if(!db.sync.enabled) return `<div id="syncbar"></div>`;
